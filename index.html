@@ -84,15 +84,6 @@
                     </p>
                 </div>
                 
-                <div class="flex flex-wrap justify-center md:justify-end gap-3 w-full md:w-auto">
-                    <button id="viewSwitcherBtn" class="px-5 py-2.5 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition-colors">
-                        View Programs
-                    </button>
-                    <a href="#" class="px-5 py-2.5 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-colors flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-                        Video Library
-                    </a>
-                </div>
             </div>
         </header>
 
@@ -768,20 +759,25 @@
                 renderExercises(filtered);
             });
 
-            // View Switcher
             viewSwitcherBtn.addEventListener('click', () => {
-                const isLibrary = libraryView.classList.contains('view-content');
-                
-                if (isLibrary) {
-                    libraryView.classList.add('hidden');
-                    programsView.classList.remove('hidden');
+                // Determine the current state based on which view is VISIBLE (i.e., NOT hidden)
+                // If libraryView does NOT have the 'hidden' class, we are in the library.
+                const currentlyInLibrary = !libraryView.classList.contains('hidden');
+
+                if (currentlyInLibrary) {
+                    // ACTION: Switch FROM Library TO Programs
+                    libraryView.classList.add('hidden');       // Hide Library
+                    programsView.classList.remove('hidden');   // Show Programs
                     viewSwitcherBtn.textContent = 'Back to Library';
+
                 } else {
-                    programsView.classList.add('hidden');
-                    libraryView.classList.remove('hidden');
+                    // ACTION: Switch FROM Programs TO Library
+                    programsView.classList.add('hidden');      // Hide Programs
+                    libraryView.classList.remove('hidden');    // Show Library
                     viewSwitcherBtn.textContent = 'View Programs';
                 }
             });
+        
 
             // Prescription Button (Save Program)
             prescribeButton.addEventListener('click', () => {
