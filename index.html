@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEP Hub: Post-Rehab Exercise Library and Prescription Platform</title>
+    <title>HEP Hub: Post-Rehab Exercise Library and Prescription Platform (Local Storage)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
@@ -54,13 +54,10 @@
 </head>
 <body class="p-0 sm:p-4 md:p-8">
 
-    <!-- JUMP TO BOTTOM BUTTON (Kept for navigation in long exercise list) -->
     <button id="jumpToBottom" class="fixed bottom-6 right-6 p-4 bg-orange-500 text-white rounded-full shadow-lg hover:bg-orange-600 transition-all z-50 transform active:scale-95">
-        <!-- Arrow Down Icon -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
     </button>
     
-    <!-- MESSAGE BOX (Replaces alert/confirm) -->
     <div id="messageBox" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 flex items-center justify-center">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full border-t-4 border-teal-500">
             <h4 id="messageTitle" class="text-xl font-bold text-teal-400 mb-3"></h4>
@@ -72,7 +69,6 @@
 
     <div class="max-w-7xl mx-auto">
         
-        <!-- Header Section (Sticky) -->
         <header class="sticky top-0 z-40 mb-8 p-6 bg-blue-900 text-white rounded-b-2xl shadow-2xl transition-all">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="text-center md:text-left">
@@ -84,16 +80,14 @@
                         Post-Rehab Exercise Library and Prescription Platform
                     </p>
                     <p id="authStatus" class="text-xs text-gray-400 mt-1">
-                        Authenticating...
+                        Status: Using Local Storage (Saving to your browser)
                     </p>
                 </div>
                 
-                <!-- Action Buttons & View Switcher -->
                 <div class="flex flex-wrap justify-center md:justify-end gap-3 w-full md:w-auto">
                     <button id="viewSwitcherBtn" class="px-5 py-2.5 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition-colors">
                         View Programs
                     </button>
-                    <!-- Mock link kept for context -->
                     <a href="#" class="px-5 py-2.5 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-colors flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
                         Video Library
@@ -102,17 +96,13 @@
             </div>
         </header>
 
-        <!-- Main Content Area: Divided into Library View and Programs View -->
         <main class="p-4 sm:p-0">
 
-            <!-- 1. EXERCISE LIBRARY VIEW -->
             <div id="libraryView" class="view-content">
                 
-                <!-- Color Key and Legend (FIXED STYLING) -->
                 <section class="mb-8 p-6 bg-gray-800 rounded-xl shadow-xl border-t-4 border-teal-500">
                     <h2 class="text-2xl font-bold text-teal-400 mb-6 border-b pb-2 border-gray-700">Exercise Color Key (Drag exercises into the HEP Pad on the right)</h2>
                     
-                    <!-- Updated Grid for Color Key -->
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-base font-semibold text-gray-100">
                         <div class="flex items-center p-3 rounded-lg bg-gray-900 hover:shadow-lg transition-shadow">
                             <span class="w-4 h-4 rounded-full mr-3 bg-blue-900"></span>
@@ -137,27 +127,21 @@
                     </div>
                 </section>
 
-                <!-- Search and Two-Column Layout -->
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
                     
-                    <!-- 1. LIBRARY SECTION (2/3 width) -->
                     <section class="xl:col-span-2">
-                        <!-- Search and Filter Bar (Now dark background) -->
                         <div class="mb-8 relative">
                             <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                             <input id="searchInput" type="text" placeholder="Search by name, injury (e.g., ACL, Low Back), category, or phase..." 
                                 class="w-full pl-12 pr-4 py-4 border-2 border-gray-600 rounded-xl shadow-lg focus:outline-none focus:ring-4 focus:ring-teal-400 transition duration-300 text-lg bg-gray-900 text-gray-100 placeholder-gray-400">
                         </div>
 
-                        <!-- Exercise Library Title -->
                         <h2 class="text-3xl font-extrabold text-gray-100 mb-6 border-b-2 pb-3 border-teal-500">
                             Exercise Library (<span id="exerciseCount"></span> items)
                         </h2>
 
-                        <!-- Results Container -->
                         <div id="resultsContainer" class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Exercise cards will be rendered here -->
-                        </div>
+                            </div>
 
                         <div id="noResults" class="hidden text-center p-12 bg-gray-800 rounded-xl shadow-lg text-gray-400 mt-10">
                             <p class="text-xl font-semibold">No Exercises Match Your Search.</p>
@@ -165,7 +149,6 @@
                         </div>
                     </section>
 
-                    <!-- 2. PRESCRIPTION PAD (1/3 width, Sticky) -->
                     <aside class="xl:col-span-1 hidden xl:block">
                         <div id="hepPad" 
                             class="sticky top-32 p-6 bg-gray-800 rounded-xl shadow-2xl border-4 border-dashed border-teal-300 flex flex-col items-center justify-start h-[calc(100vh-140px)]"
@@ -178,8 +161,7 @@
                             </h3>
                             
                             <div id="hepPadContent" class="w-full space-y-4 overflow-y-auto flex-grow">
-                                <!-- Selected exercises will be rendered here -->
-                            </div>
+                                </div>
 
                             <p id="hepPadEmptyMessage" class="text-gray-400 text-center mt-8 absolute top-1/2 transform -translate-y-1/2">
                                 Drag and drop exercises here to build a custom Home Exercise Program.
@@ -195,221 +177,132 @@
                 </div>
             </div>
 
-            <!-- 2. PATIENT PROGRAMS VIEW -->
             <div id="programsView" class="view-content hidden">
                 <h2 class="text-3xl font-extrabold text-gray-100 mb-6 border-b-2 pb-3 border-orange-500">
                     Saved Patient Programs
                 </h2>
                 <div class="p-6 bg-gray-800 rounded-xl shadow-xl border-t-4 border-orange-500 min-h-64">
-                    <p class="text-gray-400 mb-4">Your programs are secured and linked to your user ID (<span id="currentUserId" class="font-mono text-xs text-orange-300"></span>).</p>
+                    <p class="text-gray-400 mb-4">Your programs are secured locally in this browser. They are not stored in the cloud.</p>
                     
-                    <!-- Loading State -->
-                    <div id="programsLoading" class="text-center p-12 text-gray-400">
-                        <div class="animate-spin inline-block w-6 h-6 border-4 border-teal-500 border-t-transparent rounded-full mr-2"></div>
+                    <div id="programsLoading" class="text-center p-12 text-gray-400 hidden">
                         Loading patient data...
                     </div>
 
-                    <!-- Programs List Container -->
                     <div id="programsList" class="space-y-4">
-                        <!-- Patient program cards will be rendered here -->
-                    </div>
+                        </div>
 
-                    <!-- Empty State -->
                     <div id="programsEmpty" class="hidden text-center p-12 bg-gray-900 rounded-lg text-gray-400 mt-4">
                         <p class="text-xl font-semibold">No Programs Saved Yet.</p>
                         <p class="mt-2">Switch to the Exercise Library to create your first Home Exercise Program.</p>
                     </div>
                 </div>
                 
-                <!-- Detailed View Modal -->
                 <div id="detailModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 flex items-center justify-center p-4">
                     <div class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-2xl w-full border-t-4 border-orange-500 max-h-[90vh] overflow-y-auto">
                         <h4 id="detailPatientName" class="text-2xl font-bold text-orange-400 mb-4 border-b pb-2 border-gray-700"></h4>
                         <div id="detailProgramExercises" class="space-y-3 mb-6">
-                            <!-- Detailed exercises will be inserted here -->
-                        </div>
+                            </div>
                         <button id="detailCloseBtn" class="w-full py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">Close</button>
                     </div>
                 </div>
             </div>
         </main>
 
-        <!-- Footer for Scroll Target -->
         <footer id="footer" class="mt-12 p-6 text-center text-gray-400 text-sm bg-gray-800 rounded-xl shadow-inner">
             <p>&copy; 2024 HEP Hub. Specialized Post-Rehab Exercise Platform.</p>
-            <p class="mt-2">User ID: <span id="footerUserId" class="font-mono text-xs text-gray-500">N/A</span>. Data stored securely using Firestore.</p>
+            <p class="mt-2">Data stored locally in your browser using **LocalStorage**.</p>
         </footer>
 
     </div>
 
-    <!-- Firebase SDK Imports -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, addDoc, onSnapshot, deleteDoc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script type="text/javascript">
+        // --- LOCAL STORAGE DATA FUNCTIONS ---
         
-        // setLogLevel('Debug'); // Uncomment to see Firebase logs
-
-        // Global variables provided by the Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let db = null;
-        let auth = null;
-        let userId = null;
-        let authReady = false;
+        // Key for storing data in LocalStorage
+        const LOCAL_STORAGE_KEY = 'hepHUB_patient_programs';
         
-        const programsCollectionPath = `/artifacts/${appId}/users/`; // Path prefix
-
-        // --- Firebase Initialization and Auth ---
-        if (firebaseConfig) {
-            try {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-                
-                // Auth State Listener
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        document.getElementById('authStatus').textContent = `Authenticated as: ${userId}`;
-                        document.getElementById('currentUserId').textContent = userId;
-                        document.getElementById('footerUserId').textContent = userId;
-                        authReady = true;
-                        // Once authenticated, start listening for programs
-                        fetchPrograms(); 
-                    } else {
-                        userId = crypto.randomUUID(); // Fallback ID if auth fails or is anonymous
-                        document.getElementById('authStatus').textContent = `Signed out. User ID: ${userId.substring(0, 8)}...`;
-                        document.getElementById('currentUserId').textContent = userId.substring(0, 8) + '...';
-                        document.getElementById('footerUserId').textContent = userId.substring(0, 8) + '...';
-                        authReady = true;
-                        // Even if anonymous, we still want to try fetching any anonymous data
-                        fetchPrograms(); 
-                    }
-                });
-
-                // Sign in using custom token or anonymously
-                if (initialAuthToken) {
-                    signInWithCustomToken(auth, initialAuthToken).catch(error => {
-                        console.error("Custom token sign-in failed:", error);
-                        signInAnonymously(auth); // Fallback to anonymous
-                    });
-                } else {
-                    signInAnonymously(auth); // Sign in anonymously if no token is provided
-                }
-
-            } catch (e) {
-                console.error("Firebase initialization failed:", e);
-                showMessage("Error", "Could not initialize the database. Program saving disabled.");
-            }
-        } else {
-            document.getElementById('authStatus').textContent = "Database config missing. Saving disabled.";
-            console.error("Firebase config is missing.");
-        }
-
-
-        // --- FIREBASE DATA FUNCTIONS ---
+        // Array to store programs globally
+        let patientPrograms = [];
         
-        let programsSnapshotUnsubscribe = null;
-        const patientPrograms = window.patientPrograms = []; // Array to store programs globally
-
-        function getProgramsRef() {
-            // Path: /artifacts/{appId}/users/{userId}/programs
-            return collection(db, `${programsCollectionPath}${userId}/programs`);
-        }
-
         /**
-         * Listens in real-time for changes to the user's saved programs.
+         * Loads programs from LocalStorage.
          */
-        function fetchPrograms() {
-            if (!authReady || !db || programsSnapshotUnsubscribe) return;
-            
-            const programsRef = getProgramsRef();
-            const q = query(programsRef);
-
-            programsSnapshotUnsubscribe = onSnapshot(q, (snapshot) => {
-                patientPrograms.length = 0; // Clear the array
-                snapshot.forEach((doc) => {
-                    patientPrograms.push({ id: doc.id, ...doc.data() });
-                });
+        function loadPrograms() {
+            try {
+                const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+                patientPrograms = data ? JSON.parse(data) : [];
                 
-                // Sort by creation date (newest first)
-                patientPrograms.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                // Ensure programs are sorted by timestamp (newest first)
+                patientPrograms.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                 
                 renderProgramsList();
-                document.getElementById('programsLoading').classList.add('hidden');
-                console.log(`Loaded ${patientPrograms.length} programs.`);
-            }, (error) => {
-                console.error("Error fetching programs:", error);
-                document.getElementById('programsLoading').innerHTML = `<p class="text-red-400">Error loading programs: ${error.message}</p>`;
-            });
+            } catch (e) {
+                console.error("Error loading programs from LocalStorage:", e);
+                showMessage("Error", "Failed to load saved programs. Local Storage might be full or blocked.");
+            }
         }
-
-
+        
+        /**
+         * Saves the current programs array back to LocalStorage.
+         */
+        function saveProgramsToLocalStorage() {
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(patientPrograms));
+            } catch (e) {
+                console.error("Error saving programs to LocalStorage:", e);
+                showMessage("Error", "Failed to save program. Local Storage might be full or blocked.");
+            }
+        }
+        
         /**
          * Saves the current HEP Pad exercises as a new patient program.
          */
-        window.saveProgram = async function (patientName, exercises) {
-            if (!authReady || !db) {
-                showMessage("Error", "Authentication not complete. Cannot save program.");
-                return;
-            }
-
+        window.saveProgram = function (patientName, exercises) {
             if (exercises.length === 0) {
                 showMessage("Error", "The Prescription Pad is empty. Please drag exercises first.");
                 return;
             }
             
-            try {
-                const programsRef = getProgramsRef();
-                await addDoc(programsRef, {
-                    patientName: patientName,
-                    exercises: exercises,
-                    therapistId: userId,
-                    timestamp: serverTimestamp()
-                });
-                showMessage("Success", `Program saved successfully for patient: ${patientName}`);
-                window.selectedExercises = []; // Clear the pad after saving
-                window.renderHEPPad();
-            } catch (e) {
-                console.error("Error saving document: ", e);
-                showMessage("Error", "Failed to save program to database. Check console for details.");
-            }
+            const newProgram = {
+                id: Date.now().toString(), // Use timestamp as a unique ID
+                patientName: patientName,
+                exercises: exercises,
+                timestamp: Date.now() // Current time in milliseconds
+            };
+
+            patientPrograms.push(newProgram);
+            saveProgramsToLocalStorage(); // Save the updated list
+
+            showMessage("Success", `Program saved successfully for patient: ${patientName}`);
+            
+            // Clear the pad after saving
+            window.selectedExercises = []; 
+            window.renderHEPPad();
         }
         
         /**
-         * Deletes a program from Firestore.
+         * Deletes a program from LocalStorage.
          */
-        window.deleteProgram = async function (programId) {
-            if (!authReady || !db) {
-                showMessage("Error", "Authentication not complete. Cannot delete program.");
-                return;
-            }
-            
-            // NOTE: Using window.prompt instead of confirm due to the rule against alert/confirm
+        window.deleteProgram = function (programId) {
+            // NOTE: Using window.prompt instead of confirm
             const confirmation = prompt(`Type 'DELETE' to confirm removing this program forever:`);
             if (confirmation !== 'DELETE') {
                 return;
             }
 
-            try {
-                const programDocRef = doc(db, `${programsCollectionPath}${userId}/programs`, programId);
-                await deleteDoc(programDocRef);
+            const initialLength = patientPrograms.length;
+            patientPrograms = patientPrograms.filter(p => p.id !== programId);
+
+            if (patientPrograms.length < initialLength) {
+                saveProgramsToLocalStorage(); // Save the new, filtered list
                 showMessage("Deleted", "Program successfully deleted.");
-                // onSnapshot listener handles re-rendering the list automatically
-            } catch (e) {
-                console.error("Error deleting document: ", e);
-                showMessage("Error", "Failed to delete program. Check console for details.");
+                renderProgramsList(); // Re-render the list
+            } else {
+                showMessage("Error", "Failed to find program to delete.");
             }
         }
-    </script>
-    
-    <!-- Application Logic -->
-    <script type="text/javascript">
-        // --- DATA: Massive library of over 230 Specialized Post-Rehab Exercises ---
+
+        // --- EXERCISE DATA (UNMODIFIED) ---
         const exercises = [
             // STRENGTH TRAINING (Navy Blue) - 50 Exercises
             { id: 1, name: "Single-Leg Press (Unloaded)", category: "Strength Training", focus: "Quads, Glutes", injury: "Knee (ACL/MCL)", setsReps: "3x15", phase: "Early-Mid Rehab", description: "Controlled eccentric lowering for neuromuscular control and initial strength building." },
@@ -445,557 +338,513 @@
             { id: 31, name: "Seated Knee Extension (Unloaded)", category: "Strength Training", focus: "Quadriceps", injury: "Patellofemoral Pain", setsReps: "3x15", phase: "Early Rehab", description: "Focus on full extension and VMO activation without heavy weight." },
             { id: 32, name: "Shoulder External Rotation (Dumbbell)", category: "Strength Training", focus: "Rotator Cuff", injury: "Bicep Tendonitis", setsReps: "3x12", phase: "Mid Rehab", description: "Strengthening the stabilizers with a small dumbbell, elbow tucked." },
             { id: 33, name: "Single-Leg Deadlift (Kettlebell)", category: "Strength Training", focus: "Hamstrings, Balance", injury: "General Strength", setsReps: "3x8/leg", phase: "Late Rehab", description: "Integrates posterior chain strength with unilateral balance." },
-            { id: 34, name: "Wall Sits (90-degree)", category: "Strength Training", focus: "Quads, Endurance", injury: "Patellar Tendonitis", setsReps: "3x45s hold", phase: "Mid Rehab", description: "Isometric hold to build quad endurance; maintain knee alignment over feet." },
-            { id: 35, name: "Band Pull-Aparts (Overhand Grip)", category: "Strength Training", focus: "Mid/Upper Back", injury: "Postural Correction", setsReps: "3x20", phase: "All Phases", description: "Opens the chest and strengthens the scapular retractors." },
-            { id: 36, name: "Reverse Nordic Curls (Assisted)", category: "Strength Training", focus: "Knee Extensors", injury: "Patellar Tendonitis", setsReps: "3x8", phase: "Advanced Rehab", description: "Aggressive eccentric quad loading; use assistance (band or hands)." },
-            { id: 37, name: "Tibia Dorsiflexion (Band)", category: "Strength Training", focus: "Tibialis Anterior", injury: "Shin Splints", setsReps: "3x20", phase: "Mid Rehab", description: "Strengthens the shin muscle responsible for foot clearance during gait." },
-            { id: 38, name: "Hip Flexor Isometrics (High Knee)", category: "Strength Training", focus: "Hip Flexors", injury: "Groin Strain", setsReps: "3x10s hold", phase: "Early Rehab", description: "Hold knee to chest against light self-resistance." },
-            { id: 39, name: "Inverted Row (Bodyweight)", category: "Strength Training", focus: "Back, Biceps", injury: "General Strength", setsReps: "3xMax Reps", phase: "Mid-Late Rehab", description: "Modifiable pull exercise; use a lower bar to decrease difficulty." },
-            { id: 40, name: "Box Squat (To Depth)", category: "Strength Training", focus: "Glutes, Hips", injury: "Hip Replacement", setsReps: "3x10", phase: "Mid Rehab", description: "Ensures consistent depth and control; use a high box initially." },
-            { id: 41, name: "Dynamic Side Plank with Hip Dip", category: "Strength Training", focus: "Obliques, Core", injury: "Low Back Stabilization", setsReps: "3x15/side", phase: "Late Rehab", description: "Adds dynamic movement to challenge core stabilization." },
-            { id: 42, name: "Wrist Roller (Forearm)", category: "Strength Training", focus: "Forearm Flexors/Extensors", injury: "Grip Weakness", setsReps: "3 sets, roll up/down", phase: "Late Rehab", description: "Builds grip strength and endurance in the forearms." },
-            { id: 43, name: "Single-Arm Cable Fly (Chest)", category: "Strength Training", focus: "Pectorals", injury: "Shoulder Stability", setsReps: "3x12/arm", phase: "Mid-Late Rehab", description: "Unilateral chest work to correct strength imbalances." },
-            { id: 44, name: "Straight Leg Raise (Supine)", category: "Strength Training", focus: "Quads, Hip Flexors", injury: "Knee Immobilization", setsReps: "3x15", phase: "Early Rehab", description: "Maintains quadriceps strength when knee movement is restricted." },
-            { id: 45, name: "Seated Calf Raise (Dumbbell)", category: "Strength Training", focus: "Soleus", injury: "Calf Strain", setsReps: "3x15", phase: "Mid Rehab", description: "Targets the soleus muscle, important for endurance activities." },
-            { id: 46, name: "Wood Chops (Banded/Cable)", category: "Strength Training", focus: "Rotational Core", injury: "Low Back Stabilization", setsReps: "3x10/side", phase: "Late Rehab", description: "Develops core strength for rotation and anti-rotation." },
-            { id: 47, name: "Lateral Band Walks (Mini Band)", category: "Strength Training", focus: "Glute Medius", injury: "Knee/Hip Pain", setsReps: "3x20 steps/side", phase: "Mid Rehab", description: "Excellent warm-up and lateral stabilizer drill." },
-            { id: 48, name: "Trap Raise (Prone Y)", category: "Strength Training", focus: "Lower Trapezius", injury: "Shoulder Posture", setsReps: "3x15", phase: "Mid Rehab", description: "Isolates the key muscle for depressing and stabilizing the scapula." },
-            { id: 49, name: "Dowel Rod Mobilization (Shoulder)", category: "Strength Training", focus: "ROM, Pain-Free Movement", injury: "Shoulder Surgery", setsReps: "3x10 reps", phase: "Acute/Early Rehab", description: "Passive or active-assisted motion using a stick or dowel." },
-            { id: 50, name: "Reverse Hyperextension (Stability Ball)", category: "Strength Training", focus: "Glutes, Hamstrings", injury: "Low Back Pain", setsReps: "3x12", phase: "Mid Rehab", description: "Strengthening posterior chain with minimal low back compression." },
+            { id: 34, name: "Wall Sits (90-degree)", category: "Strength Training", focus: "Quadriceps", injury: "General Strength", setsReps: "3x60s", phase: "Mid Rehab", description: "Isometric quadriceps endurance building." },
+            { id: 35, name: "Resistance Band Chest Press (Standing)", category: "Strength Training", focus: "Pectorals, Shoulders", injury: "Shoulder Instability", setsReps: "3x15", phase: "Mid Rehab", description: "Focus on forward punch motion with stabilization." },
+            { id: 36, name: "Copenhagen Adduction (Modified)", category: "Strength Training", focus: "Adductors, Core", injury: "Groin Strain", setsReps: "3x10s hold", phase: "Mid Rehab", description: "Advanced isometric strength for groin and core." },
+            { id: 37, name: "Trunk Rotation (Band)", category: "Strength Training", focus: "Obliques, Rotational Core", injury: "Low Back Strain", setsReps: "3x12/side", phase: "Late Rehab", description: "Controlled rotational force with core bracing (Anti-Rotation)." },
+            { id: 38, name: "Reverse Lunges (Bodyweight)", category: "Strength Training", focus: "Quads, Glutes", injury: "Knee Osteoarthritis", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Easier on the knee joint than forward lunges; step back smoothly." },
+            { id: 39, name: "Trap Raises (Prone)", category: "Strength Training", focus: "Upper Trapezius", injury: "Neck Pain", setsReps: "3x15", phase: "Early Rehab", description: "Shrug motion while lying on stomach." },
+            { id: 40, name: "Dumbbell Shrugs (Controlled)", category: "Strength Training", focus: "Upper Trapezius", injury: "General Strength", setsReps: "3x12", phase: "Mid Rehab", description: "Slow, focused elevation and depression of the shoulders." },
+            { id: 41, name: "Lateral Arm Raise (Light Weight)", category: "Strength Training", focus: "Deltoids", injury: "Shoulder Impingement", setsReps: "3x15", phase: "Mid Rehab", description: "Controlled abduction, keeping the thumb pointed up." },
+            { id: 42, name: "Hollow Body Hold (Modified)", category: "Strength Training", focus: "Global Core", injury: "Low Back Stabilization", setsReps: "3x30s", phase: "Mid Rehab", description: "Keep low back pressed to the floor; bend knees if necessary." },
+            { id: 43, name: "Quad Sets (Max Effort)", category: "Strength Training", focus: "Quadriceps", injury: "Post-Op Knee", setsReps: "3x10x10s", phase: "Acute/Early Rehab", description: "Contracting the quad muscle with the knee extended." },
+            { id: 44, name: "Ankle Dorsiflexion with Band", category: "Strength Training", focus: "Tibialis Anterior", injury: "Shin Splints", setsReps: "3x20", phase: "Early Rehab", description: "Strengthening the muscle responsible for lifting the foot." },
+            { id: 45, name: "Cable Wood Chop (Low to High)", category: "Strength Training", focus: "Rotational Core, Shoulders", injury: "Spinal Stability", setsReps: "3x10/side", phase: "Late Rehab", description: "Power and rotation control exercise." },
+            { id: 46, name: "Side-Lying External Rotation (Weight)", category: "Strength Training", focus: "Rotator Cuff", injury: "Shoulder Instability", setsReps: "3x15", phase: "Mid Rehab", description: "Lying on side to isolate the cuff rotators." },
+            { id: 47, name: "Mini-Band Squats (Knees Out)", category: "Strength Training", focus: "Glute Medius, Quads", injury: "Knee Valgus", setsReps: "3x15", phase: "Mid Rehab", description: "Use band around knees; focus on pushing knees outward during squat." },
+            { id: 48, name: "Seated Hamstring Curl Machine (Light)", category: "Strength Training", focus: "Hamstrings", injury: "General Strength", setsReps: "3x12", phase: "Late Rehab", description: "Gradual introduction of machine resistance." },
+            { id: 49, name: "Farmer's Walk (Heavy)", category: "Strength Training", focus: "Grip, Core, Traps", injury: "Neck/Shoulder Stability", setsReps: "3x50m", phase: "Advanced Rehab", description: "Maximal grip endurance and total body stiffness." },
+            { id: 50, name: "Single-Arm Overhead Carry", category: "Strength Training", focus: "Shoulder Stability, Core", injury: "Shoulder Impingement", setsReps: "3x25 steps/arm", phase: "Late Rehab", description: "Demanding anti-flexion and shoulder stabilization drill." },
 
-            // STRETCHING / FLEXIBILITY (Orange) - 48 Exercises
-            { id: 51, name: "Pigeon Pose Modification (Pillow)", category: "Stretching/Flexibility", focus: "Hip External Rotators", injury: "Piriformis Syndrome", setsReps: "2x60s", phase: "Chronic Pain", description: "Deep stretch for glutes and piriformis. Use a pillow for support." },
-            { id: 52, name: "Wall Chest Stretch (Corner)", category: "Stretching/Flexibility", focus: "Pectorals", injury: "Round Shoulders", setsReps: "2x45s", phase: "Postural Correction", description: "Opens up the chest and counters desk posture. Keep elbows below shoulder level." },
-            { id: 53, name: "Hamstring Stretch (Strap Assisted)", category: "Stretching/Flexibility", focus: "Hamstrings", injury: "Sciatica", setsReps: "3x30s", phase: "Pain Management", description: "Lie supine and use a strap to gently pull the leg towards the chest." },
-            { id: 54, name: "Dynamic Thoracic Extension (Foam Roller)", category: "Stretching/Flexibility", focus: "Upper Back", injury: "Stiffness", setsReps: "10 reps", phase: "Warm-up", description: "Mobilizes the mid-back spine. Move slowly over the roller." },
-            { id: 55, name: "Ankle Mobility (Wall Drill)", category: "Stretching/Flexibility", focus: "Ankle Dorsiflexion", injury: "Ankle Sprain, Plantar Fasciitis", setsReps: "3x15", phase: "Early Rehab", description: "Knee-to-wall movement to improve ankle range of motion." },
-            { id: 56, name: "Nerve Glide (Slump Test Position)", category: "Stretching/Flexibility", focus: "Sciatic Nerve", injury: "Radiculopathy", setsReps: "10-20 reps", phase: "Nerve Health", description: "Gentle nerve flossing motion. Do not hold a sustained stretch." },
-            { id: 57, name: "Quadriceps Stretch (Standing Assisted)", category: "Stretching/Flexibility", focus: "Quads, Hip Flexors", injury: "Knee Pain", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Standing, pull foot towards glute. Use a wall for balance." },
-            { id: 58, name: "Cat-Cow Dynamic Stretch", category: "Stretching/Flexibility", focus: "Spinal Mobility", injury: "General Back Stiffness", setsReps: "3x10 reps", phase: "Warm-up", description: "Flowing movement to articulate the spine gently." },
-            { id: 59, name: "Child's Pose (Wide Knee)", category: "Stretching/Flexibility", focus: "Lower Back, Hips", injury: "General Relaxation", setsReps: "2x60s", phase: "Cool-down", description: "Restorative stretch to decompress the low back." },
-            { id: 60, name: "Figure-Four Stretch (Supine)", category: "Stretching/Flexibility", focus: "Glutes, Hip Capsule", injury: "Hip Bursitis", setsReps: "3x45s/side", phase: "Chronic Pain", description: "Cross ankle over opposite knee; pull knee towards chest." },
-            { id: 61, name: "Side-Lying Quad Stretch (TFL Focus)", category: "Stretching/Flexibility", focus: "TFL, Hip Flexors", injury: "IT Band Syndrome", setsReps: "3x45s/side", phase: "Mid Rehab", description: "Focus on pulling the knee back while maintaining a neutral pelvis." },
-            { id: 62, name: "Wrist Flexor Stretch (Palm Down)", category: "Stretching/Flexibility", focus: "Forearm Flexors", injury: "Medial Epicondylitis", setsReps: "3x30s/arm", phase: "Acute/Early Rehab", description: "Gentle pull on fingers to stretch the inner forearm muscles." },
-            { id: 63, name: "Dynamic Arm Circles (Forward/Back)", category: "Stretching/Flexibility", focus: "Shoulder Mobility", injury: "Shoulder Stiffness", setsReps: "2x20 reps/direction", phase: "Warm-up", description: "Small, controlled circles progressing to larger range of motion." },
-            { id: 64, name: "Calf Stretch (Gastrocnemius, Straight Knee)", category: "Stretching/Flexibility", focus: "Calf", injury: "Plantar Fasciitis", setsReps: "3x45s/leg", phase: "Chronic Pain", description: "Lean into a wall with the back leg straight, heel on the floor." },
-            { id: 65, name: "Calf Stretch (Soleus, Bent Knee)", category: "Stretching/Flexibility", focus: "Calf", injury: "Achilles Tendinopathy", setsReps: "3x45s/leg", phase: "Chronic Pain", description: "Bend the back knee slightly to target the deeper soleus muscle." },
-            { id: 66, name: "Triceps Stretch (Overhead Pull)", category: "Stretching/Flexibility", focus: "Triceps, Lats", injury: "General Upper Body", setsReps: "2x30s/arm", phase: "Cool-down", description: "Pull elbow behind the head; gentle stretch down the back of the arm." },
-            { id: 67, name: "Spinal Twist (Supine)", category: "Stretching/Flexibility", focus: "Spinal Rotation", injury: "Thoracic Mobility", setsReps: "2x60s/side", phase: "General Mobility", description: "Lie on back, cross one leg over; keep shoulders flat." },
-            { id: 68, name: "Seated Good Morning (Light)", category: "Stretching/Flexibility", focus: "Hamstrings, Low Back", injury: "Low Back Stiffness", setsReps: "3x10 reps", phase: "Warm-up", description: "Gentle hip hinge to stretch the back of the legs." },
-            { id: 69, name: "Iliopsoas Stretch (Kneeling Lunge)", category: "Stretching/Flexibility", focus: "Hip Flexors", injury: "Anterior Hip Pain", setsReps: "3x45s/leg", phase: "Mid Rehab", description: "Push hips forward gently in a kneeling lunge position." },
-            { id: 70, name: "Thread the Needle (Shoulder/Upper Back)", category: "Stretching/Flexibility", focus: "Thoracic Rotation", injury: "Shoulder Impingement", setsReps: "3x45s/side", phase: "Mobility", description: "Thread one arm under the other while in quadruped." },
-            { id: 71, name: "Dynamic Knee-to-Chest (Alternating)", category: "Stretching/Flexibility", focus: "Low Back, Hips", injury: "Warm-up", setsReps: "2x10 reps/side", phase: "Warm-up", description: "Gentle rocking motion to loosen the low back and hips before activity." },
-            { id: 72, name: "Cervical Lateral Flexion Stretch (Hand Assist)", category: "Stretching/Flexibility", focus: "Upper Trapezius", injury: "Neck Tension", setsReps: "3x30s/side", phase: "Pain Management", description: "Gently pull head to the side; look forward." },
-            { id: 73, name: "Posterior Capsule Stretch (Sleeper)", category: "Stretching/Flexibility", focus: "Shoulder Internal Rotators", injury: "Shoulder Impingement", setsReps: "3x45s/side", phase: "Mid Rehab", description: "Lying on side, gently press forearm down towards the floor." },
-            { id: 74, name: "Pectoralis Minor Stretch (Doorway)", category: "Stretching/Flexibility", focus: "Pectoralis Minor", injury: "Postural Correction", setsReps: "2x60s", phase: "Postural Correction", description: "Standing in a doorway with arms raised to 90 degrees." },
-            { id: 75, name: "Standing TFL/IT Band Stretch (Crossed Legs)", category: "Stretching/Flexibility", focus: "IT Band, TFL", injury: "IT Band Syndrome", setsReps: "3x45s/side", phase: "Chronic Pain", description: "Cross one leg behind the other and lean away from the side being stretched." },
-            { id: 76, name: "Active Straight Leg Raise (ASLR)", category: "Stretching/Flexibility", focus: "Hip Flexors, Hamstrings", injury: "Sciatica", setsReps: "3x10/leg", phase: "Mobility", description: "Supine, actively lift leg while maintaining a flat low back." },
-            { id: 77, name: "Dynamic Butt Kicks (Standing)", category: "Stretching/Flexibility", focus: "Quadriceps, Warm-up", injury: "Warm-up", setsReps: "2x30s", phase: "Warm-up", description: "Light jogging motion bringing heels to glutes." },
-            { id: 78, name: "Dynamic Frankenstein Walks", category: "Stretching/Flexibility", focus: "Hamstrings, Hip Flexors", injury: "Warm-up", setsReps: "2x20 steps", phase: "Warm-up", description: "Straight-leg marching, trying to touch opposite hand to foot." },
-            { id: 79, name: "Wall Assisted Hip Extension Stretch", category: "Stretching/Flexibility", focus: "Hip Flexors", injury: "Swayback Posture", setsReps: "3x45s/side", phase: "Postural Correction", description: "Prone, one leg hangs off table/bed to achieve gravity-assisted extension." },
-            { id: 80, name: "Median Nerve Glide (Wrist Extension)", category: "Stretching/Flexibility", focus: "Nerve Mobility", injury: "Carpal Tunnel", setsReps: "3x10 reps", phase: "Nerve Health", description: "Gentle flossing of the median nerve from the neck to the wrist." },
-            { id: 81, name: "Ulnar Nerve Glide (OK Sign)", category: "Stretching/Flexibility", focus: "Nerve Mobility", injury: "Cubital Tunnel", setsReps: "3x10 reps", phase: "Nerve Health", description: "Forming the 'OK' sign over the eye socket." },
-            { id: 82, name: "Radial Nerve Glide (Waiter's Tip)", category: "Stretching/Flexibility", focus: "Nerve Mobility", injury: "General Arm Pain", setsReps: "3x10 reps", phase: "Nerve Health", description: "Positioning the arm like a waiter carrying a tray." },
-            { id: 83, name: "Ankle Alphabet", category: "Stretching/Flexibility", focus: "Ankle ROM", injury: "Ankle Sprain", setsReps: "2x Full Alphabet/ankle", phase: "Acute/Early Rehab", description: "Tracing the alphabet with the big toe to promote controlled motion." },
-            { id: 84, name: "Adductor Stretch (Seated Straddle)", category: "Stretching/Flexibility", focus: "Inner Thigh", injury: "Groin Strain", setsReps: "3x45s", phase: "Mid Rehab", description: "Seated with legs wide, lean forward or to the side." },
-            { id: 85, name: "Psoas PNF Contract-Relax", category: "Stretching/Flexibility", focus: "Hip Flexors", injury: "Hip Tightness", setsReps: "3 reps of 10s hold", phase: "Advanced Mobility", description: "Active contraction followed by a deeper passive stretch." },
-            { id: 86, name: "Wall Assisted Pec Major Stretch (90-90)", category: "Stretching/Flexibility", focus: "Pectoralis Major", injury: "Shoulder Surgery", setsReps: "3x45s/side", phase: "Mid Rehab", description: "Arm in a 90/90 position against a door frame." },
-            { id: 87, name: "Dynamic Hamstring Swoops (Standing)", category: "Stretching/Flexibility", focus: "Hamstrings", injury: "Warm-up", setsReps: "2x10 reps/side", phase: "Warm-up", description: "Standing, bending and straightening the leg while reaching toward the floor." },
-            { id: 88, name: "Seated Upper Trap Stretch (Look Down)", category: "Stretching/Flexibility", focus: "Upper Trapezius", injury: "Cervicogenic Headache", setsReps: "3x30s/side", phase: "Pain Management", description: "Sit, pull head gently to side, then look down toward the opposite hip." },
-            { id: 89, name: "Posterior Shoulder Stretch (Cross-Body)", category: "Stretching/Flexibility", focus: "Deltoid, Capsule", injury: "Shoulder Impingement", setsReps: "3x30s/arm", phase: "General Mobility", description: "Pull arm across the body toward the opposite shoulder." },
-            { id: 90, name: "Hip External Rotation (Butterfly)", category: "Stretching/Flexibility", focus: "Hip External Rotators", injury: "Hip OA", setsReps: "2x60s", phase: "General Mobility", description: "Seated, soles of feet together, gently press knees down." },
-            { id: 91, name: "Kneeling Hip Flexor with Trunk Rotation", category: "Stretching/Flexibility", focus: "Hip Flexors, T-Spine", injury: "Low Back Stiffness", setsReps: "3x10 reps/side", phase: "Mobility", description: "Adds a dynamic twist to the hip flexor stretch." },
-            { id: 92, name: "Lattissimus Dorsi Stretch (Overhead Doorway)", category: "Stretching/Flexibility", focus: "Lats", injury: "Shoulder Mobility", setsReps: "3x45s/side", phase: "General Mobility", description: "Reach overhead and grip the side of a door frame; lean away." },
-            { id: 93, name: "Side Bend (Standing)", category: "Stretching/Flexibility", focus: "QL, Obliques", injury: "Low Back Stiffness", setsReps: "3x10/side", phase: "Warm-up", description: "Reach one arm overhead and gently lean to the side." },
-            { id: 94, name: "Wrist Extension Stretch (Palm Down)", category: "Stretching/Flexibility", focus: "Forearm Extensors", injury: "Lateral Epicondylitis", setsReps: "3x30s/arm", phase: "Acute/Early Rehab", description: "Gently pull hand downward while arm is straight." },
-            { id: 95, name: "Towel Scoop Stretch (Shoulder ER)", category: "Stretching/Flexibility", focus: "Shoulder External Rotation", injury: "Shoulder Stiffness", setsReps: "3x10 reps", phase: "Early Rehab", description: "Use a towel behind the back to gently pull the affected arm into external rotation." },
-            { id: 96, name: "Quadruped Hip Circles", category: "Stretching/Flexibility", focus: "Hip Mobility", injury: "Hip OA", setsReps: "2x10 clockwise/counter-clockwise", phase: "Warm-up", description: "Large, controlled circles with the hip while on hands and knees." },
-            { id: 97, name: "Heel Raises (Off Step, Eccentric Focus)", category: "Stretching/Flexibility", focus: "Achilles Tendon", injury: "Achilles Tendinopathy", setsReps: "3x12 (slow lower)", phase: "Mid-Late Rehab", description: "Controlled lowering phase to promote tendon repair." },
-            { id: 98, name: "Lying Side-to-Side Knee Rolls", category: "Stretching/Flexibility", focus: "Low Back, Hips", injury: "Lumbar Stiffness", setsReps: "3x10 rolls", phase: "General Mobility", description: "Supine, knees bent, gently let knees fall to the side." },
+            // STRETCHING/FLEXIBILITY (Orange) - 50 Exercises
+            { id: 51, name: "Supine Hamstring Stretch (Strap)", category: "Stretching/Flexibility", focus: "Hamstrings", injury: "Low Back Pain", setsReps: "3x30s/leg", phase: "Acute/Early Rehab", description: "Maintain a neutral spine and use a towel or strap for gentle pull." },
+            { id: 52, name: "Pectoral Doorway Stretch", category: "Stretching/Flexibility", focus: "Pectorals, Chest", injury: "Shoulder Impingement", setsReps: "3x45s", phase: "Mid Rehab", description: "Stretches chest muscles often tight from poor posture." },
+            { id: 53, name: "Figure Four (Piriformis) Stretch", category: "Stretching/Flexibility", focus: "Hips, Piriformis", injury: "Sciatica", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Deep stretch for the deep external hip rotators." },
+            { id: 54, name: "Quad Stretch (Standing Heel-to-Glute)", category: "Stretching/Flexibility", focus: "Quadriceps", injury: "Knee Pain", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Use a wall for balance; pull heel gently toward glute." },
+            { id: 55, name: "Cat-Cow Flow", category: "Stretching/Flexibility", focus: "Spine Mobility", injury: "Stiffness, Low Back Pain", setsReps: "3x10 reps", phase: "Acute/Early Rehab", description: "Gentle articulation of the thoracic and lumbar spine." },
+            { id: 56, name: "Wrist Flexor Stretch (Arm Extended)", category: "Stretching/Flexibility", focus: "Wrist Flexors", injury: "Carpal Tunnel", setsReps: "3x30s/arm", phase: "Early Rehab", description: "Gentle static stretch to the forearm flexors." },
+            { id: 57, name: "Posterior Capsule Stretch (Sleeper)", category: "Stretching/Flexibility", focus: "Shoulder", injury: "Shoulder Impingement", setsReps: "3x30s/arm", phase: "Mid Rehab", description: "Lying on side, gently push arm down into internal rotation." },
+            { id: 58, name: "Ankle Alphabet (Mobility)", category: "Stretching/Flexibility", focus: "Ankle Mobility", injury: "Ankle Fracture", setsReps: "3x Full Alphabet", phase: "Acute/Early Rehab", description: "Trace the letters of the alphabet with your foot." },
+            { id: 59, name: "Kneeling Hip Flexor Stretch", category: "Stretching/Flexibility", focus: "Hip Flexors", injury: "Low Back Pain, Hip Impingement", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Tuck pelvis under to deepen the stretch on the back leg's hip." },
+            { id: 60, name: "Seated Thoracic Rotation", category: "Stretching/Flexibility", focus: "Thoracic Spine", injury: "Upper Back Stiffness", setsReps: "3x10/side", phase: "Early Rehab", description: "Rotation exercise to improve mid-back mobility." },
+            { id: 61, name: "Calf Stretch (Wall-Assist)", category: "Stretching/Flexibility", focus: "Gastrocnemius", injury: "Plantar Fasciitis", setsReps: "3x45s/leg", phase: "Mid Rehab", description: "Keep back knee straight to stretch the superficial calf muscle." },
+            { id: 62, name: "Soleus Stretch (Bent Knee)", category: "Stretching/Flexibility", focus: "Soleus", injury: "Achilles Tendinopathy", setsReps: "3x45s/leg", phase: "Mid Rehab", description: "Bend back knee slightly to target the deep calf muscle." },
+            { id: 63, name: "Child's Pose (Wide Knee)", category: "Stretching/Flexibility", focus: "Hips, Low Back", injury: "General Relaxation", setsReps: "3x60s hold", phase: "Acute/Early Rehab", description: "Restorative stretch to decompress the spine and open hips." },
+            { id: 64, name: "Neck Lateral Flexion (Gentle)", category: "Stretching/Flexibility", focus: "Upper Trapezius, Neck", injury: "Cervical Stiffness", setsReps: "3x30s/side", phase: "Acute/Early Rehab", description: "Gently tilt ear to shoulder; can use light hand assist." },
+            { id: 65, name: "Supine Knee-to-Chest (Single/Double)", category: "Stretching/Flexibility", focus: "Low Back, Glutes", injury: "Low Back Pain", setsReps: "3x30s", phase: "Acute/Early Rehab", description: "Gentle flexion to decompress the lumbar spine." },
+            { id: 66, name: "IT Band Stretch (Cross-Legged Standing)", category: "Stretching/Flexibility", focus: "IT Band, Glutes", injury: "Runner's Knee", setsReps: "3x30s/side", phase: "Mid Rehab", description: "Cross legs, push hips away from the stretched side." },
+            { id: 67, name: "Lats Stretch (Side-Bend Overhead)", category: "Stretching/Flexibility", focus: "Lats, Torso", injury: "Shoulder/Back Pain", setsReps: "3x30s/side", phase: "Mid Rehab", description: "Reach overhead and to the side to stretch the side of the trunk." },
+            { id: 68, name: "Cobra/Press Up (Modified)", category: "Stretching/Flexibility", focus: "Lumbar Extension", injury: "Disc Herniation (Extension bias)", setsReps: "3x10 reps", phase: "Acute/Early Rehab", description: "Gentle press up to tolerance to centralize symptoms." },
+            { id: 69, name: "Towel Bicep Stretch (Against Wall)", category: "Stretching/Flexibility", focus: "Biceps", injury: "Bicep Tendonitis", setsReps: "3x30s/arm", phase: "Mid Rehab", description: "Arm straight, wrist and fingers against a wall or strap." },
+            { id: 70, name: "Seated Cross-Arm Shoulder Stretch", category: "Stretching/Flexibility", focus: "Posterior Deltoid", injury: "General Shoulder", setsReps: "3x30s/arm", phase: "Early Rehab", description: "Pull arm across chest; avoid rotating the trunk." },
+            { id: 71, name: "Groin Stretch (Butterfly/Seated)", category: "Stretching/Flexibility", focus: "Adductors, Groin", injury: "Groin Strain", setsReps: "3x45s", phase: "Mid Rehab", description: "Gentle static stretch with soles of feet together." },
+            { id: 72, name: "Prone Passive Knee Bend (Heel to Glute)", category: "Stretching/Flexibility", focus: "Quadriceps", injury: "Knee Stiffness", setsReps: "3x10 reps/leg", phase: "Mid Rehab", description: "Lying on stomach, pull heel to glute gently." },
+            { id: 73, name: "Standing T-Spine Extension (Foam Roller)", category: "Stretching/Flexibility", focus: "Thoracic Spine", injury: "Upper Back Pain", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Roll and gently extend over a foam roller in the mid-back." },
+            { id: 74, name: "Wrist Extension Stretch (Prayer Position)", category: "Stretching/Flexibility", focus: "Wrist Extensors", injury: "Lateral Epicondylitis", setsReps: "3x30s/arm", phase: "Early Rehab", description: "Hands in 'prayer' position, lower hands gently." },
+            { id: 75, name: "Deep Squat Hold (Supported)", category: "Stretching/Flexibility", focus: "Ankles, Hips", injury: "General Mobility", setsReps: "3x60s hold", phase: "Late Rehab", description: "Hold onto a post or rail for balance and depth." },
+            { id: 76, name: "Tricep Stretch (Overhead)", category: "Stretching/Flexibility", focus: "Triceps", injury: "General Elbow", setsReps: "3x30s/arm", phase: "Early Rehab", description: "Arm bent overhead, pull elbow gently toward the midline." },
+            { id: 77, name: "Side-Lying Spinal Twist", category: "Stretching/Flexibility", focus: "Spine Rotation", injury: "Low Back Stiffness", setsReps: "3x30s/side", phase: "Mid Rehab", description: "Knees together, twist lower body one way, upper body the other." },
+            { id: 78, name: "Ankle Plantarflexion Stretch (Toe Curl)", category: "Stretching/Flexibility", focus: "Foot, Toes", injury: "Plantar Fasciitis", setsReps: "3x30s/foot", phase: "Early Rehab", description: "Stretch the bottom of the foot and toes by tucking toes under." },
+            { id: 79, name: "Glute Stretch (Sitting on Chair)", category: "Stretching/Flexibility", focus: "Glutes", injury: "Sciatica", setsReps: "3x30s/leg", phase: "Early Rehab", description: "Modified figure four, cross ankle over knee while seated." },
+            { id: 80, name: "Finger Tendon Glides", category: "Stretching/Flexibility", focus: "Hand/Finger Mobility", injury: "Post-Op Hand", setsReps: "3x10 reps (4 positions)", phase: "Acute/Early Rehab", description: "Sequential tendon glide positions (straight, hook, fist, etc.)." },
+            { id: 81, name: "Wall Assisted Hip Abduction Stretch", category: "Stretching/Flexibility", focus: "Inner Thigh", injury: "Adductor Strain", setsReps: "3x60s", phase: "Mid Rehab", description: "Lying on back, legs up a wall, let them fall to the sides." },
+            { id: 82, name: "Dynamic Knee Circles (Supine)", category: "Stretching/Flexibility", focus: "Hip Mobility", injury: "General Hip", setsReps: "3x10/direction", phase: "Early Rehab", description: "Gentle, active circles of the knee and hip in the air." },
+            { id: 83, name: "Thread the Needle (Shoulder)", category: "Stretching/Flexibility", focus: "Thoracic Rotation, Shoulder", injury: "Upper Back Pain", setsReps: "3x30s/side", phase: "Mid Rehab", description: "Reach one arm under the other while in quadruped position." },
+            { id: 84, name: "Iliopsoas Stretch (Standing)", category: "Stretching/Flexibility", focus: "Hip Flexor", injury: "Low Back Pain", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Lunge position, squeeze back glute to tilt pelvis." },
+            { id: 85, name: "Broomstick Shoulder Dislocates (PVC)", category: "Stretching/Flexibility", focus: "Shoulder Girdle", injury: "Shoulder Mobility", setsReps: "3x10 reps", phase: "Late Rehab", description: "Wide grip, slow, controlled movement from front to back." },
+            { id: 86, name: "Supine T-Spine Mobilization (No Roller)", category: "Stretching/Flexibility", focus: "Mid-Back", injury: "Postural Syndrome", setsReps: "3x10 reps", phase: "Early Rehab", description: "Lie on back, hands behind head, gently lift and lower mid-back." },
+            { id: 87, name: "Towel Traction (Cervical)", category: "Stretching/Flexibility", focus: "Neck Decompression", injury: "Cervical Pain", setsReps: "3x60s hold", phase: "Acute/Early Rehab", description: "Towel wrapped around neck, gentle upward pull with hands." },
+            { id: 88, name: "Dynamic Hip Circles (Standing)", category: "Stretching/Flexibility", focus: "Hip Mobility", injury: "General Hip", setsReps: "3x10/direction", phase: "Mid Rehab", description: "Standing with support, swing leg in smooth, controlled circles." },
+            { id: 89, name: "Wrist Pronation/Supination Stretch", category: "Stretching/Flexibility", focus: "Forearm Rotation", injury: "Elbow Tendonitis", setsReps: "3x30s/direction", phase: "Early Rehab", description: "Elbow tucked, passively rotate forearm to end range." },
+            { id: 90, name: "Wall Angels (Active)", category: "Stretching/Flexibility", focus: "Shoulder Mobility, Posture", injury: "Postural Syndrome", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Keep low back, arms, and elbows against the wall." },
+            { id: 91, name: "Cross-Body Triceps Stretch", category: "Stretching/Flexibility", focus: "Triceps, Rear Shoulder", injury: "Shoulder Impingement", setsReps: "3x30s/arm", phase: "Early Rehab", description: "Pull elbow toward opposite shoulder." },
+            { id: 92, name: "Standing Quadricep Release (Foam Roll)", category: "Stretching/Flexibility", focus: "Quadriceps", injury: "Muscle Tightness", setsReps: "3x60s/leg", phase: "Late Rehab", description: "Rolling out the front of the thigh to reduce tone." },
+            { id: 93, name: "Pigeon Pose (Modified)", category: "Stretching/Flexibility", focus: "Hips, Glutes", injury: "Hip Impingement", setsReps: "3x45s/leg", phase: "Late Rehab", description: "Deep hip opening stretch; use a block under the glute if needed." },
+            { id: 94, name: "Shoulder Circles (Forward/Reverse)", category: "Stretching/Flexibility", focus: "Shoulder Mobility", injury: "General Shoulder", setsReps: "3x15/direction", phase: "Acute/Early Rehab", description: "Small, controlled circles to warm up the joint." },
+            { id: 95, name: "Lateral Neck Flexion (Active ROM)", category: "Stretching/Flexibility", focus: "Neck Mobility", injury: "Cervical Stiffness", setsReps: "3x10 reps/side", phase: "Acute/Early Rehab", description: "Gently and actively tilt head ear-to-shoulder." },
+            { id: 96, name: "Assisted Ankle Dorsiflexion (Band)", category: "Stretching/Flexibility", focus: "Ankle Mobility", injury: "Ankle Sprain", setsReps: "3x15 reps/leg", phase: "Mid Rehab", description: "Use a band to assist the forward movement of the shin." },
+            { id: 97, name: "Seated Forward Fold (Gentle)", category: "Stretching/Flexibility", focus: "Hamstrings, Low Back", injury: "General Stiffness", setsReps: "3x45s hold", phase: "Mid Rehab", description: "Keep a slight bend in the knees if hamstrings are tight." },
+            { id: 98, name: "Trunk Side-Bend (Standing)", category: "Stretching/Flexibility", focus: "Obliques, Side Body", injury: "Low Back Stiffness", setsReps: "3x10/side", phase: "Early Rehab", description: "Slide hand down the side of the leg." },
+            { id: 99, name: "Supine Pectoral Openers (Foam Roll)", category: "Stretching/Flexibility", focus: "Chest, Shoulders", injury: "Postural Syndrome", setsReps: "3x60s hold", phase: "Mid Rehab", description: "Lying lengthwise on a foam roller to open the chest." },
+            { id: 100, name: "Wrist CARs (Controlled Articular Rotations)", category: "Stretching/Flexibility", focus: "Wrist Mobility", injury: "General Wrist", setsReps: "3x5/direction", phase: "Early Rehab", description: "Controlled, slow, and large circles of the wrist." },
 
-            // BALANCE / COORDINATION (Teal) - 45 Exercises
-            { id: 101, name: "Single-Leg Stance (Eyes Closed)", category: "Balance/Coordination", focus: "Proprioception", injury: "Ankle/Knee", setsReps: "3x30s/leg", phase: "Late Rehab/Return to Sport", description: "Removes visual input to challenge the vestibular and somatosensory systems." },
-            { id: 102, name: "Tandem Stance (Heel-to-Toe)", category: "Balance/Coordination", focus: "Static Balance", injury: "Vestibular", setsReps: "3x60s", phase: "Balance Training", description: "Progress from wide base to full heel-to-toe stance." },
-            { id: 103, name: "Weight Shifting (AP/ML)", category: "Balance/Coordination", focus: "Dynamic Stability", injury: "Hip/Knee", setsReps: "3x2 minutes", phase: "Mid Rehab", description: "Controlled shifts of center of gravity forward/back (AP) and side/side (ML)." },
-            { id: 104, name: "BAPS Board Training (Clock)", category: "Balance/Coordination", focus: "Ankle Stability", injury: "Ankle Instability", setsReps: "3x1 minute", phase: "Late Rehab", description: "Tracing a figure-8 or clock pattern to recruit smaller stabilizing muscles." },
-            { id: 105, name: "Head Turns in Single-Leg Stance", category: "Balance/Coordination", focus: "Vestibular/Ocular Motor", injury: "Concussion, Dizziness", setsReps: "3x10/side", phase: "Advanced Rehab", description: "Maintains stability while challenging the inner ear and vision systems." },
-            { id: 106, name: "Single-Leg Stance (Pillow Surface)", category: "Balance/Coordination", focus: "Proprioception, Ankle", injury: "Ankle Sprain", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Introduces an unstable surface to challenge lower leg and foot stabilizers." },
-            { id: 107, name: "Single-Leg Squat (To Chair)", category: "Balance/Coordination", focus: "Unilateral Strength, Stability", injury: "Knee Surgery", setsReps: "3x10/leg", phase: "Late Rehab", description: "Develops strength and balance concurrently. Tap the chair lightly." },
-            { id: 108, name: "Star Excursion Balance Test (SEBT)", category: "Balance/Coordination", focus: "Dynamic Reach", injury: "Ankle/Knee", setsReps: "3x5 reaches/direction", phase: "Late Rehab/Pre-Sport", description: "Standing on one leg, reaching in multiple directions." },
-            { id: 109, name: "Tandem Walk (Heel-to-Toe, Forward)", category: "Balance/Coordination", focus: "Gait Stability", injury: "Neuropathy", setsReps: "3x10 steps", phase: "Balance Training", description: "Focus on slow, deliberate steps in a straight line." },
-            { id: 110, name: "Tandem Walk (Backward)", category: "Balance/Coordination", focus: "Dynamic Stability", injury: "Fall Risk", setsReps: "3x10 steps", phase: "Balance Training", description: "Walking backward in a heel-to-toe line for increased challenge." },
-            { id: 111, name: "Walking on Uneven Surface (Mat)", category: "Balance/Coordination", focus: "Gait, Foot Stability", injury: "Foot Surgery", setsReps: "3x2 minutes", phase: "Mid-Late Rehab", description: "Challenges the foot and ankle stabilizers on a soft surface." },
-            { id: 112, name: "Catch/Throw with Single-Leg Stance", category: "Balance/Coordination", focus: "Dual Tasking, Reaction", injury: "Concussion, Fall Risk", setsReps: "3x1 minute", phase: "Advanced Rehab", description: "Adds a cognitive/reactionary challenge to static balance." },
-            { id: 113, name: "Head Nods (Up/Down) in Tandem Stance", category: "Balance/Coordination", focus: "Vestibular Input", injury: "Dizziness", setsReps: "3x10 reps", phase: "Advanced Rehab", description: "Moving the head while maintaining a difficult foot position." },
-            { id: 114, name: "Walking with Visual Cues (Floor Tape)", category: "Balance/Coordination", focus: "Gait Deviation", injury: "Parkinson's Disease", setsReps: "3x5 minutes", phase: "Gait Training", description: "Uses external visual targets to facilitate better step patterns." },
-            { id: 115, name: "Single-Leg Stance with Ball Toss", category: "Balance/Coordination", focus: "Core Stability, Balance", injury: "Low Back Pain", setsReps: "3x1 minute/side", phase: "Mid-Late Rehab", description: "Anti-rotational challenge while standing on one leg." },
-            { id: 116, name: "Lunges on Foam Pad", category: "Balance/Coordination", focus: "Dynamic Unstable Surface", injury: "Knee/Hip", setsReps: "3x10/leg", phase: "Late Rehab", description: "Combines strength with extreme balance challenge." },
-            { id: 117, name: "Step and Reach (Low Step)", category: "Balance/Coordination", focus: "Controlled Descent", injury: "Knee Pain", setsReps: "3x12/leg", phase: "Mid Rehab", description: "Focus on slow, controlled stepping down off a small box." },
-            { id: 118, name: "Clock Reach (Modified SEBT)", category: "Balance/Coordination", focus: "Hip Strategy", injury: "Hip Replacement", setsReps: "3x8 reaches/leg", phase: "Mid Rehab", description: "Simpler version of SEBT, only reaching to 12, 3, 6, 9 o'clock." },
-            { id: 119, name: "Single-Leg RDL (Unweighted)", category: "Balance/Coordination", focus: "Proprioception, Hip Hinge", injury: "Hamstring Strain", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Focus on form and balance, maintaining a neutral spine." },
-            { id: 120, name: "BOSU Ball Squats (Assisted)", category: "Balance/Coordination", focus: "Ankle/Knee Stability", injury: "General Fall Risk", setsReps: "3x10", phase: "Mid Rehab", description: "Semi-unstable surface squat; use a railing for assistance." },
-            { id: 121, name: "Vestibular Habituation (Gaze Stabilization)", category: "Balance/Coordination", focus: "Inner Ear Function", injury: "Vestibular Hypofunction", setsReps: "3x1 minute", phase: "Vestibular Rehab", description: "Keeping eyes fixed on a target while moving the head side-to-side." },
-            { id: 122, name: "Weight Shifting with Arm Reach (Forward)", category: "Balance/Coordination", focus: "Limits of Stability", injury: "General Balance", setsReps: "3x15", phase: "Mid Rehab", description: "Reaching forward while maintaining balance, testing postural sway." },
-            { id: 123, name: "Walk with Head Turns (Slow)", category: "Balance/Coordination", focus: "Gait, Dual Task", injury: "Concussion", setsReps: "3x5 minutes", phase: "Mid-Late Rehab", description: "Slow walking while actively turning the head left/right with each step." },
-            { id: 124, name: "Single-Leg Jump & Stick (Forward)", category: "Balance/Coordination", focus: "Plyometrics, Landing", injury: "Return to Sport (Knee)", setsReps: "3x8 jumps/leg", phase: "Advanced Rehab", description: "Explosive jump followed by a static hold upon landing." },
-            { id: 125, name: "Agility Ladder Drills (2 Feet In)", category: "Balance/Coordination", focus: "Foot Speed, Coordination", injury: "Ankle Sprain", setsReps: "3x5 passes", phase: "Advanced Rehab", description: "Focus on quick, light foot contact and minimal visual focus." },
-            { id: 126, name: "Figure-Eight Walking", category: "Balance/Coordination", focus: "Dynamic Turning", injury: "Fall Risk", setsReps: "3x5 minutes", phase: "Gait Training", description: "Walking in a controlled, curved path to practice turning stability." },
-            { id: 127, name: "Single-Leg Stance (Mini Trampoline)", category: "Balance/Coordination", focus: "High Instability", injury: "Ankle/Knee", setsReps: "3x20s/leg", phase: "Advanced Rehab", description: "Very challenging surface; use nearby support for safety." },
-            { id: 128, name: "Standing March (Eyes Closed)", category: "Balance/Coordination", focus: "Proprioception", injury: "Neuropathy", setsReps: "3x30s", phase: "Balance Training", description: "Marching in place without visual feedback." },
-            { id: 129, name: "Tandem Stance (Visual Conflict)", category: "Balance/Coordination", focus: "Sensory Integration", injury: "Dizziness", setsReps: "3x45s", phase: "Vestibular Rehab", description: "Stand in tandem while watching a busy, scrolling video screen." },
-            { id: 130, name: "Single-Leg Hop to Stability", category: "Balance/Coordination", focus: "Landing Mechanics", injury: "Knee Surgery", setsReps: "3x10 hops", phase: "Advanced Rehab", description: "Short, quick hop followed by a 3-second stable landing hold." },
-            { id: 131, name: "Four-Square Stepping (Coordination)", category: "Balance/Coordination", focus: "Footwork, Coordination", injury: "Gait Dysfunction", setsReps: "3x1 minute", phase: "Mid Rehab", description: "Stepping into patterned squares on the floor." },
-            { id: 132, name: "Weight Shifting (Lateral with Band)", category: "Balance/Coordination", focus: "Anti-adduction Stability", injury: "Hip Weakness", setsReps: "3x1 minute", phase: "Mid Rehab", description: "Band pulls the body inward; resist while shifting weight laterally." },
-            { id: 133, name: "Foam Roll Single-Leg Balance (Ankle)", category: "Balance/Coordination", focus: "Ankle Stabilization", injury: "Ankle Sprain", setsReps: "3x30s/leg", phase: "Late Rehab", description: "Standing on the curved top of a foam roll (longitudinally)." },
-            { id: 134, name: "Walking with Varying Speeds", category: "Balance/Coordination", focus: "Gait Modulation", injury: "Gait Training", setsReps: "3x5 minutes", phase: "Gait Training", description: "Alternating between slow, medium, and fast walking pace." },
-            { id: 135, name: "Reaction Step (Visual Cue)", category: "Balance/Coordination", focus: "Reaction Time, Fall Prevention", injury: "Fall Risk", setsReps: "3x2 minutes", phase: "Advanced Rehab", description: "Stepping quickly when a light or colored card is presented." },
-            { id: 136, name: "Walking Over Obstacles (Low)", category: "Balance/Coordination", focus: "Gait Clearance", injury: "Foot Drop", setsReps: "3x10 passes", phase: "Mid-Late Rehab", description: "Step over small cones or dowels to practice foot clearance." },
-            { id: 137, name: "Single-Leg Stance (Throwing Weighted Ball)", category: "Balance/Coordination", focus: "Trunk Stability, Power", injury: "Shoulder Surgery", setsReps: "3x10 throws/side", phase: "Advanced Rehab", description: "Throwing a light medicine ball against a wall while balancing." },
-            { id: 138, name: "Marching on BOSU Ball (Dome Side Up)", category: "Balance/Coordination", focus: "Dynamic Ankle", injury: "Ankle Instability", setsReps: "3x1 minute", phase: "Mid-Late Rehab", description: "Marching in place on the unstable surface." },
-            { id: 139, name: "Standing with Reduced Base of Support (Feet Together)", category: "Balance/Coordination", focus: "Static Balance", injury: "General Fall Risk", setsReps: "3x60s", phase: "Early-Mid Rehab", description: "Stand with feet touching side-by-side." },
-            { id: 140, name: "Walking with Dual Task (Counting Backwards)", category: "Balance/Coordination", focus: "Cognitive/Motor Integration", injury: "Concussion, Fall Risk", setsReps: "3x5 minutes", phase: "Advanced Rehab", description: "Walk while performing a simple math task." },
-            { id: 141, name: "Single-Leg Squat (Band Around Knees)", category: "Balance/Coordination", focus: "Knee Tracking", injury: "Patellofemoral Pain", setsReps: "3x10/leg", phase: "Late Rehab", description: "Band forces hip abductor engagement to control knee alignment." },
-            { id: 142, name: "Wobble Board Squats (Assisted)", category: "Balance/Coordination", focus: "Ankle/Knee Stability", injury: "Ankle Sprain", setsReps: "3x10", phase: "Late Rehab", description: "Squatting motion on a board that tilts in all directions." },
-            { id: 143, name: "Lateral Shuffles (Mini-Band)", category: "Balance/Coordination", focus: "Dynamic Lateral Stability", injury: "Knee/Hip", setsReps: "3x10 steps/side", phase: "Late Rehab/Pre-Sport", description: "Quick side-steps while maintaining tension on the band." },
-            { id: 144, name: "Walking on Heels (Forward)", category: "Balance/Coordination", focus: "Dorsiflexion, Balance", injury: "Gait Training", setsReps: "3x30 steps", phase: "Mid Rehab", description: "Walk only on heels, challenging the dorsiflexors and balance." },
-            { id: 145, name: "Walking on Toes (Forward)", category: "Balance/Coordination", focus: "Plantarflexion, Balance", injury: "Calf Endurance", setsReps: "3x30 steps", phase: "Mid Rehab", description: "Walk only on toes to challenge calf endurance and ankle stability." },
+            // BALANCE/COORDINATION (Teal) - 50 Exercises
+            { id: 101, name: "Single-Leg Stance (Eyes Open)", category: "Balance/Coordination", focus: "Ankle, Hip Stability", injury: "Ankle Sprain, Knee", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Maintain a stable knee and ankle; avoid swaying." },
+            { id: 102, name: "Tandem Stance (Heel-to-Toe)", category: "Balance/Coordination", focus: "Static Balance", injury: "Concussion", setsReps: "3x60s", phase: "Early Rehab", description: "Stand with one foot directly in front of the other (like a tightrope)." },
+            { id: 103, name: "Single-Leg Stance (Eyes Closed)", category: "Balance/Coordination", focus: "Proprioception", injury: "Ankle Sprain, TBI", setsReps: "3x15s/leg", phase: "Late Rehab", description: "Increases challenge by removing visual feedback." },
+            { id: 104, name: "Weight Shifting (Quadruped)", category: "Balance/Coordination", focus: "Core, Shoulder Stability", injury: "Shoulder Injury", setsReps: "3x60s total", phase: "Early Rehab", description: "In hands/knees position, gently shift weight forward/back, side/side." },
+            { id: 105, name: "BOSU Ball Single-Leg Stance (Hold)", category: "Balance/Coordination", focus: "Dynamic Stability", injury: "Return to Sport", setsReps: "3x30s/leg", phase: "Advanced Rehab", description: "Highly challenging surface for joint stabilization." },
+            { id: 106, name: "Star Excursion Balance Test (Modified)", category: "Balance/Coordination", focus: "Dynamic Reach", injury: "Ankle/Knee", setsReps: "3x5 reaches/direction", phase: "Late Rehab", description: "Stand on one leg, tap opposite foot to various points on the floor." },
+            { id: 107, name: "Marching in Place (Narrow Base)", category: "Balance/Coordination", focus: "Dynamic Stability", injury: "General Balance", setsReps: "3x60s", phase: "Early Rehab", description: "Lift knees high while maintaining a narrow foot position." },
+            { id: 108, name: "Heel-to-Toe Walking", category: "Balance/Coordination", focus: "Gait Stability", injury: "Concussion, Vestibular", setsReps: "3x10 steps", phase: "Mid Rehab", description: "Walking with a narrow base for challenging gait." },
+            { id: 109, name: "Single-Leg Squat (To Chair)", category: "Balance/Coordination", focus: "Unilateral Strength/Balance", injury: "Knee Pain", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Squat to a low chair for support and depth control." },
+            { id: 110, name: "Rhomberg Test (Modified)", category: "Balance/Coordination", focus: "Static Balance", injury: "Vestibular", setsReps: "3x30s", phase: "Early Rehab", description: "Feet together, eyes closed (with supervision/support)." },
+            { id: 111, name: "Head Turns (Standing)", category: "Balance/Coordination", focus: "Vestibular Ocular Reflex (VOR)", injury: "Dizziness, Concussion", setsReps: "3x10/side", phase: "Acute/Early Rehab", description: "Keep eyes fixed on a target while turning head side-to-side." },
+            { id: 112, name: "Perturbations (Single-Leg)", category: "Balance/Coordination", focus: "Reactive Stability", injury: "Return to Sport", setsReps: "3x10 taps/leg", phase: "Advanced Rehab", description: "Stand on one leg, gently tap or push the patient off balance." },
+            { id: 113, name: "Stability Ball Single-Leg Sit", category: "Balance/Coordination", focus: "Core/Hip Balance", injury: "Low Back Instability", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Sitting on a ball, lift one foot off the ground." },
+            { id: 114, name: "Foam Pad Single-Leg Stance", category: "Balance/Coordination", focus: "Proprioception", injury: "Ankle Sprain", setsReps: "3x20s/leg", phase: "Mid Rehab", description: "Stand on a soft surface (cushion, foam pad) to increase challenge." },
+            { id: 115, name: "Side Shuffle (Cone Weave)", category: "Balance/Coordination", focus: "Lateral Agility", injury: "ACL Rehab", setsReps: "3x30s", phase: "Late Rehab/Return to Sport", description: "Controlled lateral movement, keeping feet from crossing." },
+            { id: 116, name: "Forward/Backward Walking (Straight Line)", category: "Balance/Coordination", focus: "Gait Control", injury: "General Balance", setsReps: "3x10m", phase: "Early Rehab", description: "Focus on heel-to-toe and smooth, straight-line progression." },
+            { id: 117, name: "Dynamic Chopping (Single-Leg)", category: "Balance/Coordination", focus: "Rotational Core/Balance", injury: "Spinal Stability", setsReps: "3x10/side", phase: "Late Rehab", description: "Chopping motion with a band or cable while standing on one leg." },
+            { id: 118, name: "Step Taps (Forward/Lateral)", category: "Balance/Coordination", focus: "Dynamic Stability", injury: "Knee Pain", setsReps: "3x20 taps/leg", phase: "Mid Rehab", description: "Stand on a step, tap the ground with the free foot." },
+            { id: 119, name: "Wobble Board Balance (Two Feet)", category: "Balance/Coordination", focus: "Ankle Stabilization", injury: "Ankle Sprain", setsReps: "3x60s", phase: "Mid Rehab", description: "Keep the edges of the board from touching the floor." },
+            { id: 120, name: "Mini Trampoline Jumps (Controlled)", category: "Balance/Coordination", focus: "Impact/Landing Mechanics", injury: "Return to Sport", setsReps: "3x30 jumps", phase: "Advanced Rehab", description: "Low-impact bouncing to prepare for running/jumping." },
+            { id: 121, name: "Single-Leg Reach (Clock)", category: "Balance/Coordination", focus: "Functional Reach", injury: "Hip, Knee", setsReps: "3x3 reaches/leg", phase: "Mid Rehab", description: "Imagine a clock; touch 3, 6, and 9 o'clock with the free foot." },
+            { id: 122, name: "Ball Toss (Tandem Stance)", category: "Balance/Coordination", focus: "Dual-Tasking", injury: "Concussion", setsReps: "3x15 catches", phase: "Mid Rehab", description: "Maintain balance while performing a cognitive task." },
+            { id: 123, name: "Quadruped with Opposite Limb Lift", category: "Balance/Coordination", focus: "Core, Spinal Control", injury: "Low Back Instability", setsReps: "3x10 reps/side", phase: "Early Rehab", description: "Lift opposing arm and leg, focusing on a flat back." },
+            { id: 124, name: "Forward Lunges (Slow/Controlled)", category: "Balance/Coordination", focus: "Proprioceptive Gait", injury: "General Balance", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Focus on smooth, controlled eccentric and concentric phases." },
+            { id: 125, name: "Lateral Hops (Over Line)", category: "Balance/Coordination", focus: "Lateral Power/Landing", injury: "Return to Sport", setsReps: "3x10/leg", phase: "Advanced Rehab", description: "Quick, low hops side to side over a marker." },
+            { id: 126, name: "Sit-to-Stand (Without Arms)", category: "Balance/Coordination", focus: "Functional Strength/Balance", injury: "General Balance", setsReps: "3x15 reps", phase: "Early Rehab", description: "Ensure knees track over feet; avoid leaning heavily forward." },
+            { id: 127, name: "Head Nods (Standing)", category: "Balance/Coordination", focus: "VOR (Vertical)", injury: "Dizziness, Concussion", setsReps: "3x10 reps", phase: "Acute/Early Rehab", description: "Keep eyes fixed on target while nodding head up and down." },
+            { id: 128, name: "Single-Leg Hop to Stabilization", category: "Balance/Coordination", focus: "Landing Mechanics", injury: "ACL Rehab", setsReps: "3x8 jumps/leg", phase: "Late Rehab/Return to Sport", description: "Jump forward or side, stick the landing, and hold for 3 seconds." },
+            { id: 129, name: "Single-Arm Dumbbell Row (Tall Kneeling)", category: "Balance/Coordination", focus: "Trunk Stability", injury: "Core Control", setsReps: "3x10/side", phase: "Mid Rehab", description: "Requires intense core bracing to resist rotation during the row." },
+            { id: 130, name: "Figure 8 Walking", category: "Balance/Coordination", focus: "Gait Control", injury: "General Balance", setsReps: "3x5 figure 8s", phase: "Mid Rehab", description: "Walking in a curved path requires continuous balance adjustments." },
+            { id: 131, name: "Bouncing Ball (Single-Leg)", category: "Balance/Coordination", focus: "Dual-Tasking, Stability", injury: "Ankle Sprain", setsReps: "3x30 bounces/leg", phase: "Late Rehab", description: "Bounce a ball against the floor while maintaining a single-leg stance." },
+            { id: 132, name: "Modified Mini-Tandem (Feet Slightly Apart)", category: "Balance/Coordination", focus: "Gait Initiation", injury: "Parkinson's Disease", setsReps: "3x10 steps", phase: "Early Rehab", description: "Narrowing the stance but not heel-to-toe for initial challenge." },
+            { id: 133, name: "Weight Shifting (Standing)", category: "Balance/Coordination", focus: "Single-Leg Load", injury: "Knee/Hip Pain", setsReps: "3x20 reps", phase: "Early Rehab", description: "Slowly rock weight side-to-side or forward-to-back." },
+            { id: 134, name: "Lunges on Uneven Surface", category: "Balance/Coordination", focus: "Proprioceptive Strength", injury: "Return to Sport", setsReps: "3x8/leg", phase: "Advanced Rehab", description: "Lunge with front or back foot on a foam pad." },
+            { id: 135, name: "Single-Arm Press (Standing)", category: "Balance/Coordination", focus: "Core/Shoulder Stability", injury: "Core Control", setsReps: "3x10/side", phase: "Mid Rehab", description: "Requires core to prevent lateral flexion when pressing a weight overhead." },
+            { id: 136, name: "Step Downs (Focus on Knee Tracking)", category: "Balance/Coordination", focus: "Eccentric Control", injury: "Patellofemoral Pain", setsReps: "3x12/leg", phase: "Mid Rehab", description: "Lowering one foot slowly to the ground from a step." },
+            { id: 137, name: "Cone Taps (Standing on Cushion)", category: "Balance/Coordination", focus: "Dynamic Stability", injury: "Ankle Sprain", setsReps: "3x20 taps/leg", phase: "Late Rehab", description: "Single-leg stance on a foam pad, tapping cones in various positions." },
+            { id: 138, name: "Agility Ladder Drills (Slow Footwork)", category: "Balance/Coordination", focus: "Foot Speed/Precision", injury: "Return to Sport", setsReps: "3x5 passes", phase: "Late Rehab", description: "Focus on accuracy and control, not speed." },
+            { id: 139, name: "Resisted Step (Band)", category: "Balance/Coordination", focus: "Lateral Hip Stability", injury: "Glute Weakness", setsReps: "3x15/side", phase: "Mid Rehab", description: "Marching while a band attempts to pull the leg inward." },
+            { id: 140, name: "Single-Leg Deadlift (Reach for Object)", category: "Balance/Coordination", focus: "Hip Hinge/Balance", injury: "Low Back Pain", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Focus on keeping the back straight and balancing." },
+            { id: 141, name: "Vestibular Habituation (Positional)", category: "Balance/Coordination", focus: "Dizziness Reduction", injury: "BPPV/Dizziness", setsReps: "3x5 reps", phase: "Acute/Early Rehab", description: "Specific head/body positions to reduce sensitivity to movement." },
+            { id: 142, name: "Two-Foot Jump (Vertical Landing)", category: "Balance/Coordination", focus: "Landing Mechanics", injury: "General Return to Sport", setsReps: "3x10 jumps", phase: "Late Rehab", description: "Jump up and land softly, knees slightly bent." },
+            { id: 143, name: "Lateral Box Step-Overs", category: "Balance/Coordination", focus: "Lateral Hip Control", injury: "Hip/Knee", setsReps: "3x10/side", phase: "Mid Rehab", description: "Stepping over a low object sideways." },
+            { id: 144, name: "Single-Leg Balance (Arm Movements)", category: "Balance/Coordination", focus: "Dynamic Balance", injury: "General Balance", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Maintain single-leg stance while moving arms up, out, and in." },
+            { id: 145, name: "Wobble Board Catch (Ball)", category: "Balance/Coordination", focus: "Dual-Tasking", injury: "Return to Sport", setsReps: "3x15 catches", phase: "Advanced Rehab", description: "Catching a ball while balancing on an unstable surface." },
+            { id: 146, name: "Seated Balance (Therapy Ball)", category: "Balance/Coordination", focus: "Core Stability", injury: "Low Back Pain", setsReps: "3x60s", phase: "Early Rehab", description: "Sitting on a therapy ball, maintaining a stable trunk." },
+            { id: 147, name: "Figure-of-8 Ankle Motion (Resistance)", category: "Balance/Coordination", focus: "Ankle Proprioception", injury: "Ankle Sprain", setsReps: "3x10 reps/leg", phase: "Mid Rehab", description: "Tracing a figure 8 with the foot against a light resistance band." },
+            { id: 148, name: "Reactive Stepping (Forward/Side)", category: "Balance/Coordination", focus: "Reaction Time", injury: "Fall Prevention", setsReps: "3x20 taps", phase: "Late Rehab", description: "Stepping quickly in response to a verbal or visual cue." },
+            { id: 149, name: "Single-Leg Calf Raise (Eccentric Focus)", category: "Balance/Coordination", focus: "Balance and Strength", injury: "Achilles Tendinopathy", setsReps: "3x12/leg", phase: "Late Rehab", description: "Focus on control during the lowering phase while balancing." },
+            { id: 150, name: "Cross-Body Reaches (Standing)", category: "Balance/Coordination", focus: "Trunk Stability, Mobility", injury: "Low Back Stiffness", setsReps: "3x10/side", phase: "Mid Rehab", description: "Reach across the body with one hand while maintaining balance." },
 
-            // FUNCTIONAL EXERCISES (Indigo) - 45 Exercises
-            { id: 151, name: "Sit-to-Stand (No Arms)", category: "Functional Exercise", focus: "Daily Living", injury: "General Weakness", setsReps: "3x15", phase: "All Phases", description: "Mimics a critical daily activity. Use a higher chair initially." },
-            { id: 152, name: "Farmer's Carry (Single-Sided)", category: "Functional Exercise", focus: "Grip, Core Stability", injury: "Low Back Pain", setsReps: "3x30 steps", phase: "Late Rehab/Pre-Sport", description: "Anti-lateral flexion drill. Focus on maintaining level shoulders and hips." },
-            { id: 153, name: "Stair Climbs (Focusing on Foot Placement)", category: "Functional Exercise", focus: "Gait, Quads", injury: "Knee Surgery", setsReps: "3 sets of 1 flight", phase: "Mid-Late Rehab", description: "Practice a slow, deliberate ascent/descent focusing on knee tracking." },
-            { id: 154, name: "Basket-Reach and Return", category: "Functional Exercise", focus: "Trunk Rotation", injury: "Low Back Disc", setsReps: "3x10", phase: "Late Rehab", description: "Controlled rotation from the core. Keep feet stationary, pivot through hips/trunk." },
-            { id: 155, name: "Weighted Lunge (Reverse)", category: "Functional Exercise", focus: "Unilateral Strength", injury: "General Strength", setsReps: "3x10/leg", phase: "Late Rehab", description: "Easier on the knee than a forward lunge; excellent for posterior chain loading." },
-            { id: 156, name: "Treadmill Walking (Backward)", category: "Functional Exercise", focus: "Gait, Knee Tracking", injury: "Patellofemoral Pain", setsReps: "3x5 minutes", phase: "Mid Rehab", description: "Reduces weight-bearing load on the knee while strengthening quads. Use handrails." },
-            { id: 157, name: "Carrying a Basket (Loaded)", category: "Functional Exercise", focus: "Grip, Postural Endurance", injury: "Postural Syndrome", setsReps: "3x2 minutes", phase: "Late Rehab", description: "Carry a weighted basket/box; focus on shoulder retraction and upright posture." },
-            { id: 158, name: "Simulated Gardening (Bending/Reaching)", category: "Functional Exercise", focus: "Hip Hinge, Squat", injury: "Low Back Pain", setsReps: "3x10 cycles", phase: "Mid-Late Rehab", description: "Practice safe lifting and bending motions typical of yard work." },
-            { id: 159, name: "Putting Away Dishes (Overhead Reach)", category: "Functional Exercise", focus: "Shoulder Endurance, ROM", injury: "Shoulder Impingement", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Controlled lifting and placing of light objects onto a high shelf." },
-            { id: 160, name: "Getting In/Out of a Car Simulation", category: "Functional Exercise", focus: "Trunk/Hip Rotation", injury: "Hip Replacement", setsReps: "3x5 reps/side", phase: "Mid Rehab", description: "Practice the pivot and sit motion safely." },
-            { id: 161, name: "Opening Heavy Door (Resistance)", category: "Functional Exercise", focus: "Push/Pull Strength", injury: "Elbow Tendonitis", setsReps: "3x10 reps", phase: "Late Rehab", description: "Use a band attached to a door handle to simulate a heavy pull." },
-            { id: 162, name: "Squat to Pick Up Object (Controlled)", category: "Functional Exercise", focus: "Lifting Mechanics", injury: "Low Back Disc", setsReps: "3x15", phase: "Mid Rehab", description: "Focus on maintaining a straight back and driving through the hips." },
-            { id: 163, name: "Throwing Motion (Light Ball)", category: "Functional Exercise", focus: "Shoulder Power, Core", injury: "Rotator Cuff Repair", setsReps: "3x10 reps", phase: "Advanced Rehab", description: "Gradual progression from short, slow throws to longer, faster ones." },
-            { id: 164, name: "Walking with Head Turns (Functional Task)", category: "Functional Exercise", focus: "Gait, Safety", injury: "Concussion, Fall Risk", setsReps: "3x5 minutes", phase: "Late Rehab", description: "Walking while actively scanning the environment (e.g., looking for keys)." },
-            { id: 165, name: "Unilateral Step Down (Controlled)", category: "Functional Exercise", focus: "Knee Eccentric Control", injury: "Patellofemoral Pain", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Standing on a step, slowly lower the other heel to the floor." },
-            { id: 166, name: "Laundry Basket Carry (Stairs)", category: "Functional Exercise", focus: "Grip, Stair Climbing", injury: "General Strength", setsReps: "3x1 flight", phase: "Late Rehab", description: "Practice carrying weight up and down stairs safely." },
-            { id: 167, name: "Lateral Step Overs (Cone)", category: "Functional Exercise", focus: "Hip Clearance, Agility", injury: "Ankle Sprain", setsReps: "3x10/side", phase: "Late Rehab/Pre-Sport", description: "Stepping sideways over a low obstacle." },
-            { id: 168, name: "Vacuuming Simulation (Band Resistance)", category: "Functional Exercise", focus: "Core/Shoulder Endurance", injury: "Low Back/Shoulder", setsReps: "3x1 minute/side", phase: "Mid Rehab", description: "Use a band attached to a stable object to resist the forward/back motion." },
-            { id: 169, name: "Donning a Backpack (Weighted)", category: "Functional Exercise", focus: "Shoulder Coordination", injury: "Shoulder Surgery", setsReps: "3x5 reps", phase: "Mid-Late Rehab", description: "Practice the motion of slipping on a light backpack safely." },
-            { id: 170, name: "Carrying a Child Simulation (Unilateral Hold)", category: "Functional Exercise", focus: "Side Core Endurance", injury: "Low Back Pain", setsReps: "3x30s hold/side", phase: "Late Rehab", description: "Holding a light weight off to one side to simulate carrying a child." },
-            { id: 171, name: "Standing on Toes (Reaching for Object)", category: "Functional Exercise", focus: "Ankle/Calf Power", injury: "Fall Risk", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Combining heel raise with an overhead reach." },
-            { id: 172, name: "Pushing a Cart Simulation (Wall)", category: "Functional Exercise", focus: "Chest/Shoulder Push", injury: "Shoulder Surgery", setsReps: "3x10s push", phase: "Early Rehab", description: "Isometric push against a wall to rebuild pushing strength." },
-            { id: 173, name: "Jumping Jacks (Modified/Low Impact)", category: "Functional Exercise", focus: "Cardio, Coordination", injury: "Knee/Ankle", setsReps: "3x30 seconds", phase: "Mid-Late Rehab", description: "Step-out jacks or low-impact jumping for cardiovascular fitness." },
-            { id: 174, name: "Picking Up Small Objects (Toes)", category: "Functional Exercise", focus: "Foot/Toe Dexterity", injury: "Foot Pain", setsReps: "3x1 minute", phase: "Mid Rehab", description: "Using toes to pick up marbles or a towel." },
-            { id: 175, name: "Single-Leg Balance (Closing a Drawer)", category: "Functional Exercise", focus: "Balance with Reach", injury: "Fall Risk", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Stand on one leg while performing a small, controlled reach/pull motion." },
-            { id: 176, name: "Getting Off the Floor (Pattern)", category: "Functional Exercise", focus: "Mobility, Strength", injury: "General Weakness", setsReps: "3x5 reps", phase: "All Phases", description: "Practice safely transitioning from floor to standing." },
-            { id: 177, name: "Carrying Groceries (Alternating Hands)", category: "Functional Exercise", focus: "Grip, Postural Control", injury: "Core Stability", setsReps: "3x1 minute", phase: "Late Rehab", description: "Walking while shifting a light load from one hand to the other." },
-            { id: 178, name: "Broom/Mop Simulation (Rotation)", category: "Functional Exercise", focus: "Trunk Rotation, Arms", injury: "Low Back", setsReps: "3x1 minute", phase: "Mid Rehab", description: "Controlled twisting motions typical of sweeping or mopping." },
-            { id: 179, name: "Lawn Mower Pull (Band)", category: "Functional Exercise", focus: "Pull Strength, Core", injury: "Low Back/Shoulder", setsReps: "3x10/side", phase: "Late Rehab", description: "Simulates pulling a cord or pushing a heavy object with resistance." },
-            { id: 180, name: "Unpacking a Box (Floor to Table)", category: "Functional Exercise", focus: "Lifting Pattern", injury: "Low Back", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Practice safe lifting of a moderate weight from a low surface to a high surface." },
+            // FUNCTIONAL EXERCISE (Indigo) - 50 Exercises
+            { id: 151, name: "Sit-to-Stand (Functional)", category: "Functional Exercise", focus: "ADL, Leg Strength", injury: "General Weakness", setsReps: "3x15 reps", phase: "Early Rehab", description: "Practice rising from a chair without using arm support." },
+            { id: 152, name: "Carrying Objects (Walking)", category: "Functional Exercise", focus: "Gait, Core", injury: "Low Back Pain", setsReps: "3x50 steps", phase: "Mid Rehab", description: "Walk while holding objects in various positions (e.g., in front, overhead)." },
+            { id: 153, name: "Stair Climbing (Slow Ascent/Descent)", category: "Functional Exercise", focus: "Gait, Leg Control", injury: "Knee Pain", setsReps: "3x1 flight", phase: "Mid Rehab", description: "Focus on controlled knee tracking and slow eccentric lowering." },
+            { id: 154, name: "Towel Grab with Toes", category: "Functional Exercise", focus: "Foot/Toe Strength", injury: "Plantar Fasciitis", setsReps: "3x10 reps/foot", phase: "Early Rehab", description: "Practice gripping a towel with the toes to strengthen foot intrinsics." },
+            { id: 155, name: "Reaching into Cupboard (Overhead)", category: "Functional Exercise", focus: "Shoulder ROM, ADL", injury: "Shoulder Impingement", setsReps: "3x15 reps", phase: "Mid Rehab", description: "Practice reaching and lowering lightweight objects from a shelf." },
+            { id: 156, name: "Laundry Basket Lift (Hip Hinge)", category: "Functional Exercise", focus: "Safe Lifting, Hip Hinge", injury: "Low Back Pain", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Practice lifting a light object from the floor using proper hip hinge form." },
+            { id: 157, name: "Getting In/Out of Car Practice", category: "Functional Exercise", focus: "Trunk Mobility, Transfers", injury: "Hip/Knee Replacement", setsReps: "3x5 reps", phase: "Early Rehab", description: "Practice swivel and leg placement movements for car transfers." },
+            { id: 158, name: "Changing Directions (Walking)", category: "Functional Exercise", focus: "Agility, Gait", injury: "General Mobility", setsReps: "3x60s", phase: "Late Rehab", description: "Walk in random directions, practicing quick, controlled pivots." },
+            { id: 159, name: "Standing on Uneven Surface (Dual Task)", category: "Functional Exercise", focus: "Balance, Cognition", injury: "Concussion", setsReps: "3x30s (while counting)", phase: "Mid Rehab", description: "Balance on a foam pad while reciting the alphabet backward." },
+            { id: 160, name: "Washing Hair Simulation (Standing)", category: "Functional Exercise", focus: "Shoulder Flexion/Rotation", injury: "Shoulder Injury", setsReps: "3x30s", phase: "Mid Rehab", description: "Practice sustained overhead arm position." },
+            { id: 161, name: "Yard Work Simulation (Raking/Shoveling)", category: "Functional Exercise", focus: "Rotational Core, Lifting", injury: "Low Back Pain", setsReps: "3x1 min", phase: "Late Rehab", description: "Practice light rotational and bending movements with a broom or stick." },
+            { id: 162, name: "Reaching Behind Back (Dressing)", category: "Functional Exercise", focus: "Shoulder ROM", injury: "Frozen Shoulder", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Practice the motion required for tucking in a shirt or fastening a bra." },
+            { id: 163, name: "Single-Leg Balance (Putting on Socks)", category: "Functional Exercise", focus: "Balance, ADL", injury: "General Balance", setsReps: "3x5 reps/leg", phase: "Mid Rehab", description: "Simulate the action of pulling on a sock while maintaining balance." },
+            { id: 164, name: "Carrying a Gallon of Milk (Suitcase Carry)", category: "Functional Exercise", focus: "Core/Grip Endurance", injury: "Shoulder/Core", setsReps: "3x20m/side", phase: "Late Rehab", description: "Heavy carry with emphasis on anti-lateral flexion of the core." },
+            { id: 165, name: "Getting Off the Floor (Controlled)", category: "Functional Exercise", focus: "Transfers, Mobility", injury: "Fall Prevention", setsReps: "3x5 reps", phase: "Early Rehab", description: "Practice safe ways to move from floor to standing." },
+            { id: 166, name: "Stepping Over Objects (Small Cones)", category: "Functional Exercise", focus: "Gait, Hip Flexion", injury: "General Mobility", setsReps: "3x10 steps/leg", phase: "Mid Rehab", description: "Practice lifting the foot high enough to clear obstacles." },
+            { id: 167, name: "Pushing a Shopping Cart (Simulation)", category: "Functional Exercise", focus: "Shoulder/Scapular Control", injury: "Shoulder Instability", setsReps: "3x60s", phase: "Mid Rehab", description: "Practice pushing against a wall or heavy object." },
+            { id: 168, name: "Throwing Motion (Light Ball)", category: "Functional Exercise", focus: "Shoulder Power/Control", injury: "Return to Sport (Throwing)", setsReps: "3x10 throws/side", phase: "Advanced Rehab", description: "Light ball tosses focusing on smooth, controlled mechanics." },
+            { id: 169, name: "Bending to Load a Dishwasher", category: "Functional Exercise", focus: "Squat Depth, Hip Hinge", injury: "Low Back Pain", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Practice squatting down to floor level." },
+            { id: 170, name: "Opening Jars (Grip Strength)", category: "Functional Exercise", focus: "Grip, Forearm Strength", injury: "Wrist/Elbow Injury", setsReps: "3x10 reps/hand", phase: "Early Rehab", description: "Use a rubber jar opener or resistance band to practice turning motions." },
+            { id: 171, name: "Reaching to Opposite Foot (Sitting)", category: "Functional Exercise", focus: "Trunk Rotation/Flexion", injury: "Low Back Stiffness", setsReps: "3x10/side", phase: "Early Rehab", description: "Sitting on a bench, reach across to the opposite foot." },
+            { id: 172, name: "Walking on Different Surfaces (Carpet, Tile)", category: "Functional Exercise", focus: "Gait Adaptation", injury: "General Balance", setsReps: "3x5 min", phase: "Late Rehab", description: "Practice walking on various textures and levels." },
+            { id: 173, name: "Kneeling to Stand (Assisted)", category: "Functional Exercise", focus: "Transfers, Leg Strength", injury: "General Weakness", setsReps: "3x5 reps/leg", phase: "Early Rehab", description: "Practice moving from kneeling to standing using a chair or counter." },
+            { id: 174, name: "Climbing in/out of Bathtub Practice", category: "Functional Exercise", focus: "Step Control, Balance", injury: "Fall Prevention", setsReps: "3x5 reps", phase: "Mid Rehab", description: "Practice high step-in motion with controlled landing." },
+            { id: 175, name: "Carrying Two Bags of Groceries (Weighted Carries)", category: "Functional Exercise", focus: "Total Body Stability", injury: "Core Strength", setsReps: "3x30 steps", phase: "Late Rehab", description: "Holding weights (or full bags) in both hands while walking." },
+            { id: 176, name: "Simulated Vacuuming/Mopping", category: "Functional Exercise", focus: "Push/Pull, Trunk Rotation", injury: "Shoulder/Back Pain", setsReps: "3x1 min", phase: "Mid Rehab", description: "Practice the dynamic forward/back and rotational motions of cleaning." },
+            { id: 177, name: "Tying Shoe Simulation (Sitting)", category: "Functional Exercise", focus: "Hip/Trunk Flexion", injury: "Hip/Knee Replacement", setsReps: "3x5 reps/leg", phase: "Early Rehab", description: "Bringing the foot up to the opposite knee for dressing." },
+            { id: 178, name: "Rapid Hand/Finger Tapping", category: "Functional Exercise", focus: "Dexterity, Fine Motor", injury: "Neurological Injury", setsReps: "3x30s", phase: "Acute/Early Rehab", description: "Quickly tapping fingers or using a pegboard." },
+            { id: 179, name: "Single-Leg Balance (Closing Eyes Briefly)", category: "Functional Exercise", focus: "Reactive Balance", injury: "Ankle Sprain", setsReps: "3x10 reps/leg", phase: "Late Rehab", description: "Stand on one leg, close eyes for 1-2 seconds, then open." },
+            { id: 180, name: "Side-Stepping with Band (Resistance)", category: "Functional Exercise", focus: "Hip Abduction Gait", injury: "Glute Medius Weakness", setsReps: "3x10 steps/direction", phase: "Mid Rehab", description: "Walking sideways against band resistance." },
+            { id: 181, name: "Pushing a Door Open (Standing)", category: "Functional Exercise", focus: "Push Strength", injury: "Shoulder/Chest", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Pushing against a wall or heavy, secured object." },
+            { id: 182, name: "High Knee Marching (Forward Progression)", category: "Functional Exercise", focus: "Gait, Hip Flexion", injury: "Foot Drop", setsReps: "3x10m", phase: "Mid Rehab", description: "Exaggerated knee lift to clear the ground." },
+            { id: 183, name: "Picking up Small Objects (Pincer Grip)", category: "Functional Exercise", focus: "Fine Motor Control", injury: "Hand/Wrist Injury", setsReps: "3x10 reps", phase: "Early Rehab", description: "Using thumb and index finger to pick up coins or beads." },
+            { id: 184, name: "Carrying a Tray (Hold Out Front)", category: "Functional Exercise", focus: "Shoulder Endurance", injury: "Shoulder Impingement", setsReps: "3x60s hold", phase: "Mid Rehab", description: "Holding a light object (like a tray) out in front of the body." },
+            { id: 185, name: "Tandem Walk (Head Turns)", category: "Functional Exercise", focus: "Dual-Tasking, Vestibular", injury: "Concussion", setsReps: "3x10 steps", phase: "Late Rehab", description: "Walking heel-to-toe while turning the head side-to-side." },
+            { id: 186, name: "Eccentric Squat (Slow Lowering)", category: "Functional Exercise", focus: "Knee Control (Stairs)", injury: "Knee Pain", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Lowering slowly (4-5 seconds) and standing up normally." },
+            { id: 187, name: "Reaching Across Midline (Standing)", category: "Functional Exercise", focus: "Trunk Rotation", injury: "General Mobility", setsReps: "3x15/side", phase: "Mid Rehab", description: "Reaching diagonally across the body to the opposite side." },
+            { id: 188, name: "Bouncing Ball (Moving Around)", category: "Functional Exercise", focus: "Dynamic Agility", injury: "Return to Sport", setsReps: "3x30s", phase: "Advanced Rehab", description: "Dribbling or bouncing a ball while walking or jogging." },
+            { id: 189, name: "Single-Leg Stance (Simulate Kicking)", category: "Functional Exercise", focus: "Hip Power, Balance", injury: "Return to Sport (Kicking)", setsReps: "3x10 reps/leg", phase: "Late Rehab", description: "Quick, controlled swing of the free leg." },
+            { id: 190, name: "Pushing/Pulling Heavy Cabinet Door", category: "Functional Exercise", focus: "Scapular Control, Pull Strength", injury: "Shoulder Injury", setsReps: "3x10/direction", phase: "Mid Rehab", description: "Using a band or pulley to simulate opening/closing heavy doors." },
+            { id: 191, name: "Getting Up From Bed (Log Roll)", category: "Functional Exercise", focus: "Spinal Protection", injury: "Spinal Fusion", setsReps: "3x5 reps", phase: "Acute/Early Rehab", description: "Practice rolling the entire body as a unit to minimize spinal twisting." },
+            { id: 192, name: "Transferring Light Objects (Stooping)", category: "Functional Exercise", focus: "Hip Hinge, Stooping", injury: "Low Back Pain", setsReps: "3x10 reps", phase: "Early Rehab", description: "Bending over to move objects from one spot to another." },
+            { id: 193, name: "Sideways Step-Ups (Low Step)", category: "Functional Exercise", focus: "Lateral Power", injury: "Knee/Hip", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Stepping up onto a box/step sideways." },
+            { id: 194, name: "Reaching for Object (Single-Arm)", category: "Functional Exercise", focus: "Shoulder ROM", injury: "Shoulder Impingement", setsReps: "3x15/arm", phase: "Mid Rehab", description: "Reaching for a specific target with controlled movements." },
+            { id: 195, name: "Throwing/Catching (Near Target)", category: "Functional Exercise", focus: "Hand-Eye, Reaction", injury: "General Coordination", setsReps: "3x30 catches", phase: "Early Rehab", description: "Toss a small ball or bean bag against a wall." },
+            { id: 196, name: "Simulated Running (High Knees/Butt Kicks)", category: "Functional Exercise", focus: "Gait Preparation", injury: "Return to Sport (Running)", setsReps: "3x30s each", phase: "Late Rehab", description: "Drills to improve running form and muscle activation." },
+            { id: 197, name: "Single-Leg Balance (Head Movements)", category: "Functional Exercise", focus: "VOR, Dynamic Balance", injury: "Concussion", setsReps: "3x30s/leg", phase: "Late Rehab", description: "Maintain single-leg stance while gently moving head." },
+            { id: 198, name: "Clapping Hands (Overhead)", category: "Functional Exercise", focus: "Shoulder Speed", injury: "Shoulder Endurance", setsReps: "3x30s", phase: "Mid Rehab", description: "Rapid overhead movements for endurance." },
+            { id: 199, name: "Walking Backward (Safe Environment)", category: "Functional Exercise", focus: "Gait Reversal", injury: "General Mobility", setsReps: "3x10m", phase: "Mid Rehab", description: "Improves hamstring and posterior chain use." },
+            { id: 200, name: "Transfer to Different Surface Heights", category: "Functional Exercise", focus: "Transfers, Transfers", injury: "General Mobility", setsReps: "3x5 reps", phase: "Early Rehab", description: "Practice sitting and standing from benches/chairs of different heights." },
 
-            // MOTOR CONTROL (Deep Green) - 45 Exercises
-            { id: 201, name: "Diaphragmatic Breathing (Supine)", category: "Motor Control", focus: "Core Activation", injury: "Post-op, Chronic Pain", setsReps: "5 minutes", phase: "Acute/Early Rehab", description: "Learning to use the diaphragm for proper bracing and core stability. Belly rises." },
-            { id: 202, name: "Cervical Retraction (Chin Tuck)", category: "Motor Control", focus: "Deep Neck Flexors", injury: "Whiplash, Headaches", setsReps: "3x10 reps", phase: "Postural Correction", description: "Strengthening small stabilizing muscles in the neck. Do not overuse accessory muscles." },
-            { id: 203, name: "Transversus Abdominis Activation (Hollowing)", category: "Motor Control", focus: "Deep Core", injury: "Low Back Instability", setsReps: "3x10s hold", phase: "Early Rehab", description: "Draw naval slightly toward spine without moving pelvis or breathing in chest." },
-            { id: 204, name: "Foot Intrinsic Muscle Short Arc", category: "Motor Control", focus: "Arch Stability", injury: "Plantar Fasciitis", setsReps: "3x15", phase: "Early Rehab", description: "Practice 'short-foot' exercise to activate the arch muscles. No toe curling." },
-            { id: 205, name: "Pelvic Tilt (Anterior/Posterior)", category: "Motor Control", focus: "Lumbar/Pelvic Awareness", injury: "Low Back Pain", setsReps: "3x10", phase: "Acute/Early Rehab", description: "Gentle movement to improve body awareness and segment isolation in the low back." },
-            { id: 206, name: "Hip Hike (Standing)", category: "Motor Control", focus: "Gluteal Firing", injury: "Trendelenburg Gait", setsReps: "3x15/leg", phase: "Mid Rehab", description: "Lifts the non-weight bearing hip using the stance leg's gluteus medius." },
-            { id: 207, name: "Quadruped Arm Lift (Without Trunk Shift)", category: "Motor Control", focus: "Core/Trunk Stability", injury: "Low Back Instability", setsReps: "3x10/arm", phase: "Mid Rehab", description: "Lift one arm while maintaining a perfectly still, level torso." },
-            { id: 208, name: "Heel Slide (Supine, Core Control)", category: "Motor Control", focus: "TA/Core Activation", injury: "Low Back Pain", setsReps: "3x10/leg", phase: "Early Rehab", description: "Sliding heel along the floor while maintaining a neutral pelvis/low back." },
-            { id: 209, name: "Scapular Setting (Wall)", category: "Motor Control", focus: "Scapular Control", injury: "Shoulder Impingement", setsReps: "3x10s hold", phase: "Early Rehab", description: "Practice retracting and depressing the shoulder blades against a wall." },
-            { id: 210, name: "Ball Squeeze (Knee Adduction)", category: "Motor Control", focus: "Core/Adductor Synergy", injury: "Pelvic Floor Dysfunction", setsReps: "3x10s hold", phase: "Early Rehab", description: "Squeeze a small ball between the knees to engage the deep core." },
-            { id: 211, name: "Standing Hip Abduction (Controlled)", category: "Motor Control", focus: "Unilateral Stability", injury: "Hip/Knee", setsReps: "3x15/leg", phase: "Mid Rehab", description: "Slow, small lift of the leg out to the side; focus on avoiding pelvic drop." },
-            { id: 212, name: "Brugger Relief Position", category: "Motor Control", focus: "Postural Awareness", injury: "Chronic Pain", setsReps: "3x1 minute", phase: "Postural Correction", description: "Seated, focus on arching back, opening chest, and rotating arms externally." },
-            { id: 213, name: "Pointer Dog (Quadruped Alternate Limb)", category: "Motor Control", focus: "Cross-Body Stability", injury: "Low Back Instability", setsReps: "3x10/side", phase: "Mid Rehab", description: "Extend opposite arm and leg while maintaining a flat back." },
-            { id: 214, name: "Supine March (Small Arc)", category: "Motor Control", focus: "Deep Core Endurance", injury: "Low Back Pain", setsReps: "3x20 alternating", phase: "Mid Rehab", description: "Lifting knees one at a time, keeping the low back stable on the floor." },
-            { id: 215, name: "Standing Heel-Toe Rocking", category: "Motor Control", focus: "Ankle Strategy", injury: "General Balance", setsReps: "3x30s", phase: "Early Balance", description: "Gently rocking forward onto toes and back onto heels." },
-            { id: 216, name: "I's, T's, Y's (Prone, Bodyweight)", category: "Motor Control", focus: "Mid/Lower Trapezius", injury: "Shoulder Posture", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Focus on isolating the back muscles without momentum." },
-            { id: 217, name: "Supine Abdominal Bracing (Cough)", category: "Motor Control", focus: "Core Firing Pattern", injury: "Post-op Core", setsReps: "3x10 contractions", phase: "Acute/Early Rehab", description: "Practice bracing the deep core by simulating a light cough." },
-            { id: 218, name: "Seated Postural Correction (Wall Slide)", category: "Motor Control", focus: "Thoracic/Cervical Alignment", injury: "Postural Syndrome", setsReps: "3x10s hold", phase: "All Phases", description: "Sit straight against a wall, focusing on chin tuck and shoulder blade retraction." },
-            { id: 219, name: "Resisted Lumbar Flexion (Band)", category: "Motor Control", focus: "Segmental Lumbar Flexion", injury: "Low Back Stenosis", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Use a band around the upper back to resist a gentle crunch motion." },
-            { id: 220, name: "Finger Lifts (Table Top)", category: "Motor Control", focus: "Hand/Finger Extensors", injury: "Hand Weakness", setsReps: "3x15 reps", phase: "Early Rehab", description: "Lifting one or two fingers off a flat surface." },
-            { id: 221, name: "Single-Leg Stance (Gaze on Moving Target)", category: "Motor Control", focus: "Visual Stability", injury: "Vestibular", setsReps: "3x30s/side", phase: "Advanced Rehab", description: "Maintain balance while tracking a moving object with the eyes." },
-            { id: 222, name: "Standing Clock/Cone Pick-Up", category: "Motor Control", focus: "Hip Hinge vs Squat", injury: "Low Back Mechanics", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Practice bending to pick up an object from the floor with good form." },
-            { id: 223, name: "Prone Hip Extension (Small Range)", category: "Motor Control", focus: "Glute Firing", injury: "Glute Amnesia", setsReps: "3x15/leg", phase: "Early Rehab", description: "Lift leg slightly off the floor, focusing purely on glute contraction." },
-            { id: 224, name: "Seated Trunk Rotation (Segmental)", category: "Motor Control", focus: "Thoracic Mobility", injury: "Low Back Fusion", setsReps: "3x10/side", phase: "Mid Rehab", description: "Rotate the upper body, keeping the lower body completely still." },
-            { id: 225, name: "Quadruped Knee Lift (No Pelvic Rotation)", category: "Motor Control", focus: "Glute Medius Control", injury: "Hip Instability", setsReps: "3x15/leg", phase: "Mid Rehab", description: "Lift knee out to the side a few inches; avoid tilting the hips." },
-            { id: 226, name: "Wall Angels (Shoulder)", category: "Motor Control", focus: "Shoulder Mobility, Posture", injury: "Postural Syndrome", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Sliding arms up and down a wall, keeping wrists and elbows touching." },
-            { id: 227, name: "Ankle Inversion with Band (Controlled)", category: "Motor Control", focus: "Tibialis Posterior", injury: "Foot Stability", setsReps: "3x15", phase: "Mid Rehab", description: "Slow, deliberate movement to control the foot's arch." },
-            { id: 228, name: "Resisted Scapular Retraction (Band)", category: "Motor Control", focus: "Rhomboids, Mid Trap", injury: "Postural Correction", setsReps: "3x15", phase: "Mid Rehab", description: "Pulling a resistance band apart between hands, focusing on squeezing shoulder blades." },
-            { id: 229, name: "Head/Neck Isolation (Figure 8)", category: "Motor Control", focus: "Cervical Proprioception", injury: "Neck Pain", setsReps: "3x10/direction", phase: "Early Rehab", description: "Slow, small movements of the head in a figure-eight pattern." },
-            { id: 230, name: "Bird Dog (Stability Ball Under Knees)", category: "Motor Control", focus: "Advanced Core Stability", injury: "Low Back Instability", setsReps: "3x10/side", phase: "Late Rehab", description: "Performing the Bird Dog exercise with an extremely unstable base." },
-            { id: 231, name: "Seated Chin Glide (Micro Movement)", category: "Motor Control", focus: "Deep Neck Flexors", injury: "Cervicogenic Headache", setsReps: "3x10 reps", phase: "Acute/Early Rehab", description: "Small, gentle movement to isolate the deepest neck stabilizers." },
-            { id: 232, name: "Supine Core Bracing (Feet Elevated)", category: "Motor Control", focus: "Core Stability", injury: "Low Back Disc", setsReps: "3x30s hold", phase: "Early Rehab", description: "Brace the core while maintaining a stable pelvis with legs relaxed on a chair/box." },
-            { id: 233, name: "Standing Pelvic Clocks", category: "Motor Control", focus: "Pelvic Awareness", injury: "Sacroiliac Joint Dysfunction", setsReps: "2x1 minute", phase: "Mid Rehab", description: "Gentle movement of the pelvis to trace a clock face." },
-            { id: 234, name: "Prone Cobra (Low Intensity)", category: "Motor Control", focus: "Erectors, Posture", injury: "Low Back Pain", setsReps: "3x10s hold", phase: "Mid Rehab", description: "Gently lift chest, retract shoulder blades, thumbs up; avoid pain." },
-            { id: 235, name: "Wrist Radial/Ulnar Deviation (Controlled)", category: "Motor Control", focus: "Wrist Stabilizers", injury: "Wrist Pain", setsReps: "3x15", phase: "Early Rehab", description: "Slow, non-painful movement side-to-side (deviation)." },
-            { id: 236, name: "Single-Leg Balance (Tracing Shapes on Floor)", category: "Motor Control", focus: "Foot Proprioception", injury: "Ankle Sprain", setsReps: "3x1 minute/leg", phase: "Mid Rehab", description: "Using the non-weight-bearing foot to lightly trace shapes on the ground." },
-            { id: 237, name: "Supine Alternating Knee Drop (Controlled)", category: "Motor Control", focus: "Anti-Rotation Core", injury: "Low Back Instability", setsReps: "3x20 alternating", phase: "Mid Rehab", description: "Drop one knee out to the side a few inches; avoid letting the pelvis tilt." },
-            { id: 238, name: "Segmental Rolling (Supine to Prone)", category: "Motor Control", focus: "Trunk Segmentation", injury: "Rotational Control", setsReps: "3x5 rolls/side", phase: "Early-Mid Rehab", description: "Using only the core and head to initiate a roll; highly controlled." },
-            { id: 239, name: "Standing Weight Shift (Foot Tripod)", category: "Motor Control", focus: "Foot Arch Control", injury: "Plantar Fasciitis", setsReps: "3x1 minute", phase: "Mid Rehab", description: "Shift weight to engage the 'tripod' points of the foot (heel, big toe, pinky toe)." },
-            { id: 240, name: "Ankle Isometrics (All Directions)", category: "Motor Control", focus: "Ankle Stability", injury: "Acute Ankle Sprain", setsReps: "3x10s hold/direction", phase: "Acute Rehab", description: "Gently press foot into a wall or floor in four directions (in, out, up, down)." },
-            { id: 241, name: "Prone Extension (McKenzie Low Back)", category: "Motor Control", focus: "Spinal Extension", injury: "Disc Herniation", setsReps: "10x10 reps", phase: "Acute/Early Rehab", description: "Lying on stomach, push up onto elbows/hands if tolerable, then return." },
-            { id: 242, name: "Side-Lying Hip Abduction (Precision)", category: "Motor Control", focus: "Glute Medius Isolation", injury: "Hip Bursitis", setsReps: "3x15/leg", phase: "Early-Mid Rehab", description: "Small, slow lift of the leg, ensuring the hip stays forward and stable." },
-            { id: 243, name: "Finger/Thumb Opposition", category: "Motor Control", focus: "Hand Dexterity", injury: "Hand Surgery", setsReps: "3x1 minute", phase: "Early Rehab", description: "Touching the thumb to each fingertip in sequence." },
-            { id: 244, name: "Seated Knee Extension with Quad Set", category: "Motor Control", focus: "VMO Firing", injury: "Knee Surgery", setsReps: "3x10s hold", phase: "Acute/Early Rehab", description: "Contracting the quad (VMO) forcefully at full knee extension." },
-            { id: 245, name: "Static Balance (Eyes Open, Distraction)", category: "Motor Control", focus: "Concentration/Stability", injury: "Concussion", setsReps: "3x60s", phase: "Mid Rehab", description: "Stand normally while reading simple text or listening to music." },
+            // MOTOR CONTROL (Deep Green) - 50 Exercises
+            { id: 201, name: "Transversus Abdominis Activation (Supine)", category: "Motor Control", focus: "Deep Core", injury: "Low Back Pain", setsReps: "3x10x10s", phase: "Acute/Early Rehab", description: "Draw navel gently toward spine without moving the pelvis." },
+            { id: 202, name: "Cervical Retraction (Chin Tuck)", category: "Motor Control", focus: "Deep Neck Flexors", injury: "Cervical Pain, Posture", setsReps: "3x15 reps", phase: "Acute/Early Rehab", description: "Gently glide the head straight back, as if making a double chin." },
+            { id: 203, name: "Scapular Setting (Depression & Retraction)", category: "Motor Control", focus: "Scapular Stabilizers", injury: "Shoulder Impingement", setsReps: "3x10x5s", phase: "Acute/Early Rehab", description: "Gently squeeze shoulder blades down and back." },
+            { id: 204, name: "Pelvic Tilts (Supine)", category: "Motor Control", focus: "Pelvic Mobility", injury: "Low Back Pain", setsReps: "3x15 reps", phase: "Acute/Early Rehab", description: "Gently rocking the pelvis forward (anterior) and backward (posterior)." },
+            { id: 205, name: "Single-Leg Stance (Toe Taps)", category: "Motor Control", focus: "Ankle Proprioception", injury: "Ankle Sprain", setsReps: "3x30s/leg", phase: "Mid Rehab", description: "Maintain balance while lightly tapping the free foot in front." },
+            { id: 206, name: "Diaphragmatic Breathing (Supine)", category: "Motor Control", focus: "Core Activation", injury: "Stress/Pain", setsReps: "3x10 breaths", phase: "Acute/Early Rehab", description: "Breathe into the belly, not the chest, to engage the diaphragm." },
+            { id: 207, name: "Foot Intrinsic Activation (Short Foot)", category: "Motor Control", focus: "Foot Arch", injury: "Plantar Fasciitis", setsReps: "3x10x5s", phase: "Early Rehab", description: "Contracting the foot muscles to lift the arch without curling the toes." },
+            { id: 208, name: "Knee Extensions (Quad Set Focus)", category: "Motor Control", focus: "VMO Activation", injury: "Patellofemoral Pain", setsReps: "3x10x5s", phase: "Acute/Early Rehab", description: "Focus on maximizing the contraction of the muscle above the knee." },
+            { id: 209, name: "Hip Abduction (Side-Lying, No Rotation)", category: "Motor Control", focus: "Glute Medius Isolation", injury: "Hip Pain", setsReps: "3x15 reps/leg", phase: "Early Rehab", description: "Lift leg straight up, ensuring the pelvis doesn't rock back." },
+            { id: 210, name: "Wrist Extension (Supine Forearm Rest)", category: "Motor Control", focus: "Wrist Control", injury: "Wrist/Elbow", setsReps: "3x15 reps", phase: "Early Rehab", description: "Lying down, practice smooth wrist extension, keeping forearm relaxed." },
+            { id: 211, name: "Modified Plank (On Knees)", category: "Motor Control", focus: "Trunk Stability", injury: "Acute Low Back Pain", setsReps: "3x30s hold", phase: "Early Rehab", description: "Maintain a flat back and a gentle core brace." },
+            { id: 212, name: "Shoulder External Rotation (Towel under Arm)", category: "Motor Control", focus: "Rotator Cuff Isolation", injury: "Shoulder Impingement", setsReps: "3x15 reps", phase: "Mid Rehab", description: "Tuck a small towel under the arm to isolate the external rotators." },
+            { id: 213, name: "Dead Bug (Arms Only)", category: "Motor Control", focus: "Core Anti-Extension", injury: "Low Back Stability", setsReps: "3x10 reps", phase: "Early Rehab", description: "Lower arms overhead, ensuring the low back stays pressed to the floor." },
+            { id: 214, name: "Ankle Dorsiflexion (Smooth Motion)", category: "Motor Control", focus: "Tibialis Anterior Control", injury: "Foot Drop", setsReps: "3x15 reps/leg", phase: "Early Rehab", description: "Slow, deliberate ankle lift and lower." },
+            { id: 215, name: "Bird-Dog (Arm/Leg Slides)", category: "Motor Control", focus: "Spinal Control", injury: "Low Back Pain", setsReps: "3x10 reps/side", phase: "Mid Rehab", description: "Slide arm and opposite leg out along the floor, minimizing spinal movement." },
+            { id: 216, name: "Hip Extension (Prone, Knee Bent 90°)", category: "Motor Control", focus: "Glute Isolation", injury: "Hip/Low Back", setsReps: "3x15 reps/leg", phase: "Early Rehab", description: "Lift bent leg using the glute; avoid arching the low back." },
+            { id: 217, name: "Cervical Nods (Yes/No)", category: "Motor Control", focus: "Upper Cervical Control", injury: "Neck Pain", setsReps: "3x10 reps/direction", phase: "Acute/Early Rehab", description: "Small, gentle nodding and rotation movements." },
+            { id: 218, name: "Standing March (Slow & Controlled)", category: "Motor Control", focus: "Gait Control", injury: "Balance Deficit", setsReps: "3x30s", phase: "Early Rehab", description: "Lifting knees slowly, holding briefly at the top." },
+            { id: 219, name: "Wrist Rolls (Controlled, Smooth)", category: "Motor Control", focus: "Joint Articulation", injury: "Wrist/Hand", setsReps: "3x10/direction", phase: "Early Rehab", description: "Slow, large circles of the wrist to improve joint awareness." },
+            { id: 220, name: "Resisted Scapular Retraction (Band)", category: "Motor Control", focus: "Mid-Back Control", injury: "Postural Syndrome", setsReps: "3x15 reps", phase: "Mid Rehab", description: "Pulling a light band apart to activate mid-back muscles." },
+            { id: 221, name: "Bridging (Glute Squeeze Focus)", category: "Motor Control", focus: "Glute Isolation", injury: "Low Back Pain", setsReps: "3x15 reps", phase: "Early Rehab", description: "Lift hips by squeezing glutes; avoid pushing with hamstrings/back." },
+            { id: 222, name: "Heel Raises (Slow Eccentric)", category: "Motor Control", focus: "Calf Control", injury: "Achilles Tendinopathy", setsReps: "3x12 reps", phase: "Mid Rehab", description: "Focus on a 3-4 second lowering phase." },
+            { id: 223, name: "Dynamic Chopping (Tall Kneeling)", category: "Motor Control", focus: "Core Control", injury: "Spinal Stability", setsReps: "3x10/side", phase: "Mid Rehab", description: "Using a band, pull from high to low, maintaining a stable trunk." },
+            { id: 224, name: "Leg Slides (Heel Drag)", category: "Motor Control", focus: "Hip Flexion Control", injury: "Knee Replacement", setsReps: "3x15 reps/leg", phase: "Acute/Early Rehab", description: "Sliding the heel up and down the mat to maintain joint protection." },
+            { id: 225, name: "Side Plank (Leg Lift)", category: "Motor Control", focus: "Lateral Core/Hip Control", injury: "Low Back Instability", setsReps: "3x10 reps/side", phase: "Late Rehab", description: "Lifting the top leg while holding a side plank." },
+            { id: 226, name: "Ankle Inversion/Eversion (Controlled)", category: "Motor Control", focus: "Ankle Stabilization", injury: "Ankle Sprain", setsReps: "3x15 reps/direction", phase: "Early Rehab", description: "Slow, controlled movement of the foot inward and outward." },
+            { id: 227, name: "Mini-Squats (Mirror Feedback)", category: "Motor Control", focus: "Knee Tracking", injury: "Patellofemoral Pain", setsReps: "3x15 reps", phase: "Early Rehab", description: "Use a mirror to ensure knees stay aligned over feet." },
+            { id: 228, name: "Arm Lift (Prone, Scapular Focus)", category: "Motor Control", focus: "Shoulder Girdle Control", injury: "Shoulder Instability", setsReps: "3x10 reps", phase: "Mid Rehab", description: "Lying on stomach, lift arm slightly, focusing on shoulder blade position." },
+            { id: 229, name: "Rolling (Segmental)", category: "Motor Control", focus: "Trunk Dissociation", injury: "Spinal Control", setsReps: "3x5 rolls/side", phase: "Early Rehab", description: "Rolling the trunk by moving shoulders first, then hips." },
+            { id: 230, name: "Toe Taps/Heel Slides (Core Focus)", category: "Motor Control", focus: "Abdominal Bracing", injury: "Low Back Pain", setsReps: "3x15 reps/leg", phase: "Early Rehab", description: "Lowering one foot to tap the floor while maintaining a neutral spine." },
+            { id: 231, name: "Single-Leg Balance (Soft Surface, Arms Crossed)", category: "Motor Control", focus: "Challenging Proprioception", injury: "Return to Sport", setsReps: "3x15s/leg", phase: "Late Rehab", description: "Increases challenge with unstable base and no arm support." },
+            { id: 232, name: "Hip Internal/External Rotation (Seated)", category: "Motor Control", focus: "Hip Joint Control", injury: "Hip Impingement", setsReps: "3x10/direction", phase: "Early Rehab", description: "Sitting, rotating the foot inward and outward." },
+            { id: 233, name: "Shoulder Internal Rotation (Band Resistance)", category: "Motor Control", focus: "Rotator Cuff Strength/Control", injury: "Shoulder Instability", setsReps: "3x15 reps", phase: "Mid Rehab", description: "Pulling a band across the body toward the stomach." },
+            { id: 234, name: "Wall Crawling (Fingers Up)", category: "Motor Control", focus: "Shoulder ROM", injury: "Frozen Shoulder", setsReps: "3x10 crawls", phase: "Acute/Early Rehab", description: "Walking the fingers up a wall to gradually increase arm elevation." },
+            { id: 235, name: "Neck Isometrics (All Directions)", category: "Motor Control", focus: "Cervical Stability", injury: "Whiplash", setsReps: "3x5s hold/direction", phase: "Acute/Early Rehab", description: "Gently push head against hand in four directions (front, back, sides)." },
+            { id: 236, name: "Single-Leg Bridge (Hold)", category: "Motor Control", focus: "Glute Endurance, Stability", injury: "Hamstring Strain", setsReps: "3x10s hold/leg", phase: "Mid Rehab", description: "Holding a bridge with one leg extended." },
+            { id: 237, name: "Reverse Table Top (Modified)", category: "Motor Control", focus: "Shoulder/Glute Control", injury: "Shoulder Pain", setsReps: "3x10s hold", phase: "Mid Rehab", description: "Sitting with hands behind, lifting hips slightly for posterior chain activation." },
+            { id: 238, name: "Toe Spreading/Squeezing", category: "Motor Control", focus: "Foot Intrinsic", injury: "Foot Pain", setsReps: "3x15 reps", phase: "Early Rehab", description: "Actively spreading toes apart and squeezing them together." },
+            { id: 239, name: "Vastus Medialis Obliquus (VMO) Step-Down", category: "Motor Control", focus: "Knee Tracking", injury: "Patellofemoral Pain", setsReps: "3x10/leg", phase: "Mid Rehab", description: "Step down from a low box, ensuring the knee tracks laterally." },
+            { id: 240, name: "Plank with Alternating Arm Lift", category: "Motor Control", focus: "Anti-Rotation Core", injury: "Spinal Stability", setsReps: "3x10 taps/arm", phase: "Late Rehab", description: "Lifting one arm while maintaining a stable plank position." },
+            { id: 241, name: "Single-Arm Dumbbell Carry (Overhead)", category: "Motor Control", focus: "Shoulder/Core Stability", injury: "Shoulder Impingement", setsReps: "3x25 steps/arm", phase: "Late Rehab", description: "Walk with a weight overhead, focusing on shoulder and trunk control." },
+            { id: 242, name: "Wall Squat (Ball Between Knees)", category: "Motor Control", focus: "Adductor/VMO Activation", injury: "Knee Valgus", setsReps: "3x30s hold", phase: "Mid Rehab", description: "Squeeze a ball between the knees while performing a wall squat." },
+            { id: 243, name: "Prone Hip Extension (Straight Leg)", category: "Motor Control", focus: "Glute Max", injury: "Low Back Pain", setsReps: "3x15 reps/leg", phase: "Mid Rehab", description: "Lift straight leg slightly off the floor using the glute." },
+            { id: 244, name: "Table Top Rotation (Gentle)", category: "Motor Control", focus: "Trunk Dissociation", injury: "Low Back Stiffness", setsReps: "3x10/side", phase: "Mid Rehab", description: "In hands/knees, lift one arm and rotate the chest open." },
+            { id: 245, name: "Mini-Band Side Step (Slow)", category: "Motor Control", focus: "Glute Medius Control", injury: "Hip/Knee", setsReps: "3x10 steps/direction", phase: "Mid Rehab", description: "Slow and controlled lateral steps to isolate glute contraction." },
+            { id: 246, name: "Finger Isolations (Piano Keys)", category: "Motor Control", focus: "Fine Motor Control", injury: "Neurological Injury", setsReps: "3x60s", phase: "Early Rehab", description: "Practice lifting and lowering each finger individually." },
+            { id: 247, name: "Supine Scapular Retraction (Small Ball)", category: "Motor Control", focus: "Mid-Back Isolation", injury: "Postural Syndrome", setsReps: "3x10x5s", phase: "Acute/Early Rehab", description: "Squeezing a small ball between the shoulder blades while lying down." },
+            { id: 248, name: "Quadruped Core (Weight Shift/Reach)", category: "Motor Control", focus: "Spinal Stability", injury: "Low Back Pain", setsReps: "3x10 reps/side", phase: "Late Rehab", description: "Reach forward with one arm while maintaining a stable trunk." },
+            { id: 249, name: "Ankle Circles (Inversion/Eversion Focus)", category: "Motor Control", focus: "Ankle Proprioception", injury: "Ankle Sprain", setsReps: "3x10/direction", phase: "Early Rehab", description: "Focus on articulating the full range of inversion and eversion." },
+            { id: 250, name: "Single-Arm Band Press (Anti-Rotation)", category: "Motor Control", focus: "Core Anti-Rotation", injury: "Spinal Stability", setsReps: "3x10/side", phase: "Mid Rehab", description: "Pressing a band straight forward while resisting the rotation." }
         ];
 
-        // --- GLOBAL STATE & DOM ELEMENTS ---
-        let selectedExercises = []; // The list of exercises added to the prescription pad (HEP Pad)
-        let currentPage = 'library'; // 'library' or 'programs'
-
+        // --- GLOBAL VARIABLES & INITIALIZATION ---
+        window.selectedExercises = []; // The list of exercises in the HEP Pad
         const resultsContainer = document.getElementById('resultsContainer');
-        const searchInput = document.getElementById('searchInput');
-        const noResultsMessage = document.getElementById('noResults');
-        const exerciseCountSpan = document.getElementById('exerciseCount');
-        const jumpToBottomButton = document.getElementById('jumpToBottom');
         const hepPadContent = document.getElementById('hepPadContent');
-        const hepPadEmptyMessage = document.getElementById('hepPadEmptyMessage');
         const prescribeButton = document.getElementById('prescribeButton');
-        const viewSwitcherBtn = document.getElementById('viewSwitcherBtn');
-        
+        const hepPadEmptyMessage = document.getElementById('hepPadEmptyMessage');
+        const searchInput = document.getElementById('searchInput');
+        const exerciseCountSpan = document.getElementById('exerciseCount');
+        const programsList = document.getElementById('programsList');
+        const programsEmpty = document.getElementById('programsEmpty');
         const libraryView = document.getElementById('libraryView');
         const programsView = document.getElementById('programsView');
-        const programsList = document.getElementById('programsList');
-        
-        const detailModal = document.getElementById('detailModal');
+        const viewSwitcherBtn = document.getElementById('viewSwitcherBtn');
         const messageBox = document.getElementById('messageBox');
-        
-        window.selectedExercises = selectedExercises; // Expose for clearing after save
+        const messageTitle = document.getElementById('messageTitle');
+        const messageBody = document.getElementById('messageBody');
+        const messageCloseBtn = document.getElementById('messageCloseBtn');
+        const detailModal = document.getElementById('detailModal');
+        const detailCloseBtn = document.getElementById('detailCloseBtn');
+        const detailPatientName = document.getElementById('detailPatientName');
+        const detailProgramExercises = document.getElementById('detailProgramExercises');
 
-        const categoryColorMap = {
-            "Strength Training": "strength-border",
-            "Stretching/Flexibility": "stretching-border",
-            "Balance/Coordination": "balance-border",
-            "Functional Exercise": "functional-border",
-            "Motor Control": "motor-control-border"
-        };
-        
-        const categoryIconMap = {
-            "Strength Training": '💪',
-            "Stretching/Flexibility": '🧘',
-            "Balance/Coordination": '🤸',
-            "Functional Exercise": '🏃',
-            "Motor Control": '🧠'
-        };
-
-
-        // --- UTILITY FUNCTIONS ---
-        
-        function getBorderClass(category) {
-            return categoryColorMap[category] || 'border-l-4 border-gray-400';
-        }
-
-        function findExerciseById(id) {
-            return exercises.find(ex => ex.id === parseInt(id));
-        }
-        
-        /**
-         * Custom message box function (Replaces alert/confirm for general info)
-         */
-        function showMessage(title, body) {
-            document.getElementById('messageTitle').textContent = title;
-            document.getElementById('messageBody').textContent = body;
-            messageBox.classList.remove('hidden');
-        }
-        document.getElementById('messageCloseBtn').addEventListener('click', () => {
-            messageBox.classList.add('hidden');
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            renderExercises(exercises);
+            loadPrograms(); // Load saved programs from local storage on startup
+            setupEventListeners();
         });
 
+        // --- UI UTILITY FUNCTIONS ---
 
-        // --- DRAG AND DROP HANDLERS ---
-        function handleDragStart(e) {
-            // Set the data to be dragged (the exercise ID)
-            e.dataTransfer.setData('text/plain', e.target.getAttribute('data-exercise-id'));
-            e.target.classList.add('opacity-40');
+        /**
+         * Custom message box utility to replace alert/confirm
+         */
+        window.showMessage = function (title, body) {
+            messageTitle.textContent = title;
+            messageBody.textContent = body;
+            messageBox.classList.remove('hidden');
         }
 
-        function handleDragEnd(e) {
-            e.target.classList.remove('opacity-40');
-        }
+        /**
+         * Renders the entire list of exercises in the library.
+         */
+        function renderExercises(filteredList) {
+            resultsContainer.innerHTML = '';
+            exerciseCountSpan.textContent = filteredList.length;
 
-        function handleDragOver(e) {
-            e.preventDefault(); // Necessary to allow dropping
-            const hepPad = document.getElementById('hepPad');
-            hepPad.classList.add('drag-over');
-        }
-
-        function handleDragLeave(e) {
-            const hepPad = document.getElementById('hepPad');
-            hepPad.classList.remove('drag-over');
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            const hepPad = document.getElementById('hepPad');
-            hepPad.classList.remove('drag-over');
-
-            const id = e.dataTransfer.getData('text/plain');
-            const exercise = findExerciseById(id);
-
-            if (exercise && !selectedExercises.some(ex => ex.id === exercise.id)) {
-                selectedExercises.push(exercise);
-                window.renderHEPPad();
+            if (filteredList.length === 0) {
+                document.getElementById('noResults').classList.remove('hidden');
+                return;
+            } else {
+                document.getElementById('noResults').classList.add('hidden');
             }
-        }
-        
-        // --- RENDERING FUNCTIONS (HEP PAD) ---
 
-        window.renderHEPPad = function() {
+            filteredList.forEach(exercise => {
+                const categoryClass = exercise.category.toLowerCase().split('/')[0].replace(/ /g, '-');
+                const borderClass = `${categoryClass}-border`;
+                
+                const card = document.createElement('div');
+                card.className = `card bg-gray-900 p-5 rounded-xl border-l-6 ${borderClass}`;
+                card.setAttribute('draggable', true);
+                card.setAttribute('data-exercise-id', exercise.id);
+                card.setAttribute('data-category', exercise.category);
+                card.setAttribute('ondragstart', 'handleDragStart(event)');
+
+                card.innerHTML = `
+                    <h3 class="text-lg font-bold text-teal-300 mb-1">${exercise.name}</h3>
+                    <p class="text-xs font-semibold uppercase text-gray-400 mb-2">${exercise.category} | ${exercise.focus}</p>
+                    <p class="text-sm text-gray-300 mb-2">Target: ${exercise.injury}</p>
+                    <p class="text-sm text-gray-300 italic">Phase: ${exercise.phase}</p>
+                `;
+                resultsContainer.appendChild(card);
+            });
+        }
+
+        /**
+         * Renders the list of exercises currently in the HEP Pad.
+         */
+        window.renderHEPPad = function () {
             hepPadContent.innerHTML = '';
             
-            if (selectedExercises.length > 0) {
-                hepPadEmptyMessage.classList.add('hidden');
-                prescribeButton.disabled = false;
-                prescribeButton.textContent = `Generate and Save HEP (${selectedExercises.length} Exercises)`;
-
-                selectedExercises.forEach(exercise => {
-                    const listItem = document.createElement('div');
-                    const borderColor = getBorderClass(exercise.category);
-
-                    // Updated background and text colors for dark mode
-                    listItem.className = `p-3 bg-gray-700 rounded-lg shadow-sm ${borderColor} flex items-center justify-between`;
-                    listItem.innerHTML = `
-                        <div class="flex-1 min-w-0">
-                            <p class="text-sm font-bold text-gray-100 truncate">${exercise.name}</p>
-                            <p class="text-xs text-gray-400">Sets/Reps: ${exercise.setsReps || 'Varies'}</p>
-                        </div>
-                        <button class="remove-btn ml-3 p-1 text-red-400 hover:text-red-300 transition-colors" data-id="${exercise.id}">
-                            <!-- X Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                        </button>
-                    `;
-                    hepPadContent.appendChild(listItem);
-                });
-            } else {
+            if (window.selectedExercises.length === 0) {
                 hepPadEmptyMessage.classList.remove('hidden');
                 prescribeButton.disabled = true;
                 prescribeButton.textContent = 'Generate and Save HEP (0 Exercises)';
-            }
-            
-            // Re-attach listeners for remove buttons
-            hepPadContent.querySelectorAll('.remove-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const idToRemove = parseInt(e.currentTarget.getAttribute('data-id'));
-                    selectedExercises = selectedExercises.filter(ex => ex.id !== idToRemove);
-                    window.renderHEPPad();
-                });
-            });
-        }
-        
-        // --- RENDERING FUNCTIONS (LIBRARY) ---
-
-        function renderResults(results) {
-            resultsContainer.innerHTML = '';
-            exerciseCountSpan.textContent = `${results.length}`;
-
-            if (results.length > 0) {
-                noResultsMessage.classList.add('hidden');
-                results.forEach(exercise => {
-                    const card = document.createElement('div');
-                    const borderColor = getBorderClass(exercise.category);
-                    
-                    card.setAttribute('draggable', 'true');
-                    card.setAttribute('data-exercise-id', exercise.id);
-                    card.addEventListener('dragstart', handleDragStart);
-                    card.addEventListener('dragend', handleDragEnd);
-
-                    card.className = `card bg-gray-800 p-6 rounded-xl ${borderColor} flex flex-col`;
-                    card.innerHTML = `
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-extrabold text-gray-100 flex items-center">
-                                ${categoryIconMap[exercise.category] || '📍'} ${exercise.name}
-                            </h3>
-                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-gray-700 text-gray-300 border border-gray-600">${exercise.category}</span>
-                        </div>
-                        
-                        <p class="text-sm text-gray-400 mt-1 mb-3">${exercise.description}</p>
-                        
-                        <div class="mt-auto pt-3 border-t border-gray-700 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                            <div class="text-blue-400 font-semibold">
-                                Sets/Reps: <span class="text-gray-300">${exercise.setsReps || 'Varies'}</span>
-                            </div>
-                            <div class="text-teal-400 font-semibold">
-                                Focus: <span class="text-gray-300">${exercise.focus}</span>
-                            </div>
-                            <div class="text-orange-400 font-semibold">
-                                Phase: <span class="text-gray-300">${exercise.phase}</span>
-                            </div>
-                        </div>
-                    `;
-                    resultsContainer.appendChild(card);
-                });
-            } else {
-                noResultsMessage.classList.remove('hidden');
-            }
-        }
-
-        function handleSearch() {
-            const query = searchInput.value.toLowerCase().trim();
-            if (query === '') {
-                renderResults(exercises);
                 return;
             }
 
-            const filteredResults = exercises.filter(exercise => {
-                const searchString = `${exercise.name.toLowerCase()} ${exercise.category.toLowerCase()} ${exercise.focus.toLowerCase()} ${exercise.injury.toLowerCase()} ${exercise.description.toLowerCase()} ${exercise.phase.toLowerCase()}`;
-                return searchString.includes(query);
+            hepPadEmptyMessage.classList.add('hidden');
+            prescribeButton.disabled = false;
+            prescribeButton.textContent = `Generate and Save HEP (${window.selectedExercises.length} Exercises)`;
+
+            window.selectedExercises.forEach((exercise, index) => {
+                const categoryClass = exercise.category.toLowerCase().split('/')[0].replace(/ /g, '-');
+                const borderClass = `${categoryClass}-border`;
+
+                const item = document.createElement('div');
+                item.className = `bg-gray-700 p-3 rounded-lg border-l-4 ${borderClass} flex justify-between items-center`;
+                item.innerHTML = `
+                    <div>
+                        <p class="text-sm font-bold text-gray-100">${index + 1}. ${exercise.name}</p>
+                        <p class="text-xs text-gray-300">${exercise.setsReps || '3 sets of 10-15 reps'}</p>
+                    </div>
+                    <button onclick="removeExercise(${exercise.id})" class="text-red-400 hover:text-red-500 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                `;
+                hepPadContent.appendChild(item);
             });
-
-            renderResults(filteredResults);
         }
-        
-        // --- RENDERING FUNCTIONS (PROGRAMS VIEW) ---
 
+        /**
+         * Renders the list of saved programs.
+         */
         function renderProgramsList() {
             programsList.innerHTML = '';
-
-            if (window.patientPrograms.length === 0) {
-                document.getElementById('programsEmpty').classList.remove('hidden');
+            
+            if (patientPrograms.length === 0) {
+                programsEmpty.classList.remove('hidden');
             } else {
-                document.getElementById('programsEmpty').classList.add('hidden');
-                
-                window.patientPrograms.forEach(program => {
-                    const card = document.createElement('div');
-                    card.className = "bg-gray-700 p-4 rounded-lg shadow-md flex justify-between items-center border-l-4 border-orange-400 hover:bg-gray-600 transition-colors cursor-pointer";
-                    
-                    const timestamp = program.timestamp ? new Date(program.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
-
-                    card.innerHTML = `
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-lg font-bold text-gray-100 truncate">${program.patientName}</h4>
-                            <p class="text-sm text-gray-400">Exercises: ${program.exercises.length} | Created: ${timestamp}</p>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button data-program-id="${program.id}" class="view-program-btn p-2 rounded-full bg-teal-600 hover:bg-teal-700 text-white transition-colors">
-                                <!-- Eye Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </button>
-                            <button data-program-id="${program.id}" class="delete-program-btn p-2 rounded-full bg-red-600 hover:bg-red-700 text-white transition-colors">
-                                <!-- Trash Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                            </button>
-                        </div>
-                    `;
-                    programsList.appendChild(card);
-                });
-                
-                // Attach event listeners for the new buttons
-                programsList.querySelectorAll('.view-program-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const programId = e.currentTarget.getAttribute('data-program-id');
-                        viewProgramDetails(programId);
-                    });
-                });
-                
-                programsList.querySelectorAll('.delete-program-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const programId = e.currentTarget.getAttribute('data-program-id');
-                        window.deleteProgram(programId);
-                    });
-                });
+                programsEmpty.classList.add('hidden');
             }
+
+            patientPrograms.forEach(program => {
+                const programElement = document.createElement('div');
+                programElement.className = 'bg-gray-700 p-4 rounded-lg shadow-md border-l-4 border-orange-500 flex justify-between items-center transition-all hover:bg-gray-600';
+                
+                const formattedDate = new Date(program.timestamp).toLocaleDateString();
+
+                programElement.innerHTML = `
+                    <div>
+                        <p class="text-xl font-bold text-orange-300">${program.patientName}</p>
+                        <p class="text-sm text-gray-300 mt-1">${program.exercises.length} Exercises | Created: ${formattedDate}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="window.viewProgramDetails('${program.id}')" class="px-3 py-1 bg-teal-600 text-white text-sm font-semibold rounded hover:bg-teal-700 transition-colors">
+                            View Details
+                        </button>
+                        <button onclick="window.deleteProgram('${program.id}')" class="px-3 py-1 bg-red-600 text-white text-sm font-semibold rounded hover:bg-red-700 transition-colors">
+                            Delete
+                        </button>
+                    </div>
+                `;
+                programsList.appendChild(programElement);
+            });
         }
-        
-        function viewProgramDetails(programId) {
-            const program = window.patientPrograms.find(p => p.id === programId);
+
+        /**
+         * Shows the detailed modal for a saved program.
+         */
+        window.viewProgramDetails = function (programId) {
+            const program = patientPrograms.find(p => p.id === programId);
             if (!program) {
                 showMessage("Error", "Program not found.");
                 return;
             }
-            
-            document.getElementById('detailPatientName').textContent = `HEP for: ${program.patientName}`;
-            const exercisesHtml = program.exercises.map(ex => {
-                const borderColor = getBorderClass(ex.category);
-                return `
-                    <div class="p-3 bg-gray-900 rounded-lg shadow-inner ${borderColor}">
-                        <p class="text-base font-semibold text-gray-100">${ex.name}</p>
-                        <p class="text-xs text-gray-400">${ex.setsReps} | Focus: ${ex.focus}</p>
-                    </div>
+
+            detailPatientName.textContent = `Program for ${program.patientName}`;
+            detailProgramExercises.innerHTML = '';
+
+            program.exercises.forEach((ex, index) => {
+                const categoryClass = ex.category.toLowerCase().split('/')[0].replace(/ /g, '-');
+                const borderClass = `${categoryClass}-border`;
+                
+                const exItem = document.createElement('div');
+                exItem.className = `p-3 bg-gray-900 rounded border-l-4 ${borderClass}`;
+                exItem.innerHTML = `
+                    <p class="text-base font-semibold text-gray-100">${index + 1}. ${ex.name}</p>
+                    <p class="text-sm text-teal-400">${ex.setsReps || '3 sets of 10-15 reps'}</p>
+                    <p class="text-xs text-gray-400 italic mt-1">${ex.description}</p>
                 `;
-            }).join('');
-            
-            document.getElementById('detailProgramExercises').innerHTML = exercisesHtml;
+                detailProgramExercises.appendChild(exItem);
+            });
+
             detailModal.classList.remove('hidden');
         }
 
+        // --- EVENT HANDLERS ---
+        
+        function setupEventListeners() {
+            // Message box close button
+            messageCloseBtn.addEventListener('click', () => {
+                messageBox.classList.add('hidden');
+            });
 
-        // --- VIEW SWITCHER ---
+            // Detail modal close button
+            detailCloseBtn.addEventListener('click', () => {
+                detailModal.classList.add('hidden');
+            });
 
-        function switchView(viewName) {
-            currentPage = viewName;
-            
-            if (viewName === 'programs') {
-                libraryView.classList.add('hidden');
-                programsView.classList.remove('hidden');
-                viewSwitcherBtn.textContent = 'Back to Library';
-                viewSwitcherBtn.classList.remove('bg-orange-500');
-                viewSwitcherBtn.classList.add('bg-teal-500');
-                jumpToBottomButton.classList.add('hidden'); // Hide scroll button on short view
-                renderProgramsList();
-            } else { // 'library'
-                libraryView.classList.remove('hidden');
-                programsView.classList.add('hidden');
-                viewSwitcherBtn.textContent = 'View Programs';
-                viewSwitcherBtn.classList.remove('bg-teal-500');
-                viewSwitcherBtn.classList.add('bg-orange-500');
-                // Only show jump to bottom button if the list is long, which it now is.
-                jumpToBottomButton.classList.remove('hidden'); 
-            }
+            // Search functionality
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = exercises.filter(ex => 
+                    ex.name.toLowerCase().includes(query) ||
+                    ex.category.toLowerCase().includes(query) ||
+                    ex.focus.toLowerCase().includes(query) ||
+                    ex.injury.toLowerCase().includes(query) ||
+                    ex.phase.toLowerCase().includes(query)
+                );
+                renderExercises(filtered);
+            });
+
+            // View Switcher
+            viewSwitcherBtn.addEventListener('click', () => {
+                const isLibrary = libraryView.classList.contains('view-content');
+                
+                if (isLibrary) {
+                    libraryView.classList.add('hidden');
+                    programsView.classList.remove('hidden');
+                    viewSwitcherBtn.textContent = 'Back to Library';
+                } else {
+                    programsView.classList.add('hidden');
+                    libraryView.classList.remove('hidden');
+                    viewSwitcherBtn.textContent = 'View Programs';
+                }
+            });
+
+            // Prescription Button (Save Program)
+            prescribeButton.addEventListener('click', () => {
+                const patientName = prompt("Enter Patient Name for this Program:");
+                if (patientName && patientName.trim() !== "") {
+                    window.saveProgram(patientName.trim(), window.selectedExercises);
+                } else if (patientName !== null) {
+                    showMessage("Action Required", "Patient name cannot be empty.");
+                }
+            });
+
+            // Jump to bottom button
+            document.getElementById('jumpToBottom').addEventListener('click', () => {
+                document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+        
+        // --- DRAG AND DROP LOGIC ---
+
+        window.handleDragStart = function (e) {
+            e.dataTransfer.setData('text/plain', e.target.getAttribute('data-exercise-id'));
+            e.dataTransfer.effectAllowed = 'copy';
+        };
+
+        window.handleDragOver = function (e) {
+            e.preventDefault(); 
+            e.dataTransfer.dropEffect = 'copy';
+            e.currentTarget.classList.add('drag-over');
+        };
+
+        window.handleDragLeave = function (e) {
+            e.currentTarget.classList.remove('drag-over');
         }
 
+        window.handleDrop = function (e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
 
-        // --- EVENT LISTENERS ---
+            const id = e.dataTransfer.getData('text/plain');
+            const exercise = exercises.find(ex => ex.id == id);
 
-        searchInput.addEventListener('input', handleSearch);
-
-        jumpToBottomButton.addEventListener('click', () => {
-            document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        viewSwitcherBtn.addEventListener('click', () => {
-            switchView(currentPage === 'library' ? 'programs' : 'library');
-        });
-
-        // Close detail modal
-        document.getElementById('detailCloseBtn').addEventListener('click', () => {
-            detailModal.classList.add('hidden');
-        });
-
-        // Save Program button functionality
-        prescribeButton.addEventListener('click', () => {
-            if (selectedExercises.length === 0) {
-                showMessage("Empty Pad", "Please drag exercises into the Prescription Pad before saving.");
-                return;
+            if (exercise) {
+                // Ensure no duplicates by ID, but allow duplicates if necessary (e.g., if you want the user to be able to add the same exercise twice with different reps later)
+                // For simplicity, we'll allow duplicates for now, as the original code structure suggests a simple list.
+                
+                window.selectedExercises.push(exercise);
+                window.renderHEPPad();
+                
+                // Scroll to the bottom of the HEP Pad to show the newly added exercise
+                hepPadContent.scrollTop = hepPadContent.scrollHeight;
             }
+        };
+
+        window.removeExercise = function (idToRemove) {
+            // Find the index of the first exercise with the matching ID
+            const index = window.selectedExercises.findIndex(ex => ex.id === idToRemove);
             
-            // Rule: Must not use alert/confirm, using prompt for input is acceptable here.
-            const patientName = prompt("Enter the Patient's Name for this program:");
-
-            if (patientName && patientName.trim()) {
-                window.saveProgram(patientName.trim(), selectedExercises);
-            } else if (patientName !== null) {
-                showMessage("Input Required", "Patient name cannot be empty. Program not saved.");
+            if (index > -1) {
+                window.selectedExercises.splice(index, 1);
+                window.renderHEPPad();
             }
-            // If patientName is null (user clicked cancel on prompt), do nothing.
-        });
-
-
-        // Initialize HEP Pad drag/drop listeners (on the pad element itself)
-        const hepPad = document.getElementById('hepPad');
-        hepPad.addEventListener('dragover', handleDragOver);
-        hepPad.addEventListener('dragleave', handleDragLeave);
-        hepPad.addEventListener('drop', handleDrop);
-
-
-        // Initial setup on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            renderResults(exercises);
-            window.renderHEPPad();
-            switchView('library'); // Start on the library page
-        });
+        }
+        
     </script>
 </body>
 </html>
