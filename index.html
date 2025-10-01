@@ -757,8 +757,14 @@
                     ex.phase.toLowerCase().includes(query)
                 );
                 renderExercises(filtered);
-            });
+            // 1. DEFINE VARIABLES FIRST (Outside the function)
+            // This must happen right after your HTML content loads (e.g., at the end of the body
+            // or inside a DOMContentLoaded listener).
+            const viewSwitcherBtn = document.getElementById('viewSwitcherBtn'); 
+            const libraryView = document.getElementById('library-view'); 
+            const programsView = document.getElementById('programs-view');
 
+            // 2. ATTACH THE EVENT LISTENER to the defined button
             viewSwitcherBtn.addEventListener('click', () => {
                 // Determine the current state based on which view is VISIBLE (i.e., NOT hidden)
                 // If libraryView does NOT have the 'hidden' class, we are in the library.
@@ -776,8 +782,8 @@
                     libraryView.classList.remove('hidden');    // Show Library
                     viewSwitcherBtn.textContent = 'View Programs';
                 }
-            });
-        
+            }); 
+            // Note: This is the only closing '});' for the event listener.
 
             // Prescription Button (Save Program)
             prescribeButton.addEventListener('click', () => {
