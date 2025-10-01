@@ -50,6 +50,47 @@
         }
         #hepPad::-webkit-scrollbar { width: 4px; }
         #hepPad::-webkit-scrollbar-thumb { background-color: #0d9488; border-radius: 4px; }
+        
+         /* Custom print styles to hide UI and show the dedicated print content */
+        @media print {
+            body > *:not(#printView) { /* Hide all direct children of body except the print view */
+                display: none !important;
+            }
+            #printView, #printView * { /* Only show the print view and its contents */
+                display: block !important;
+            }
+            #printView {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                /* Reset colors and margins for printing */
+                padding: 0;
+                margin: 0;
+                background-color: white;
+                color: black;
+                box-shadow: none;
+                border: none;
+            }
+            /* Ensure the table prints clearly */
+            #printView table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            #printView th, #printView td {
+                border: 1px solid #999;
+                padding: 10px;
+                color: black;
+                background-color: white;
+            }
+            #printView th {
+                background-color: #e0e7ff; /* Light blue header for professionalism */
+                color: #1e3a8a;
+            }
+            .print-header h1 {
+                color: #1e3a8a !important;
+            }
+        }
     </style>
 </head>
 <body class="p-0 sm:p-4 md:p-8">
