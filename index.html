@@ -51,7 +51,7 @@
         #hepPad::-webkit-scrollbar { width: 4px; }
         #hepPad::-webkit-scrollbar-thumb { background-color: #0d9488; border-radius: 4px; }
 
-        /* Custom print styles to hide UI and show the dedicated print content */
+         /* Custom print styles to hide UI and show the dedicated print content */
         @media print {
             body > *:not(#printView) { /* Hide all direct children of body except the print view */
                 display: none !important;
@@ -71,21 +71,17 @@
                 color: black;
                 box-shadow: none;
                 border: none;
-                font-family: 'Inter', sans-serif;
-                min-height: 100vh;
             }
             /* Ensure the table prints clearly */
             #printView table {
                 border-collapse: collapse;
                 width: 100%;
-                margin-top: 20px;
             }
             #printView th, #printView td {
                 border: 1px solid #999;
                 padding: 10px;
                 color: black;
                 background-color: white;
-                text-align: left;
             }
             #printView th {
                 background-color: #e0e7ff; /* Light blue header for professionalism */
@@ -207,13 +203,15 @@
                                 Current Prescription
                             </h3>
 
+                            <!-- ADDED INPUTS FOR PROGRAM TITLE AND PATIENT NAME -->
                             <div class="w-full space-y-3 mb-6">
                                 <input type="text" id="programTitleInput" placeholder="Enter Program Title (e.g., Phase 1: Knee Stability)"
-                                            class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:ring-teal-500 focus:border-teal-500 transition-colors text-base">
+                                       class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:ring-teal-500 focus:border-teal-500 transition-colors text-base">
                                 <input type="text" id="patientNameInput" placeholder="Enter Patient Name (e.g., Alex Johnson)"
-                                            class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:ring-teal-500 focus:border-teal-500 transition-colors text-base">
+                                       class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:ring-teal-500 focus:border-teal-500 transition-colors text-base">
                             </div>
-                            
+                            <!-- END ADDED INPUTS -->
+                             
                             <div id="hepPadContent" class="w-full space-y-4 overflow-y-auto flex-grow">
                                 </div>
 
@@ -222,7 +220,7 @@
                             </p>
 
 
-                            <button id="prescribeButton" onclick="saveProgram()" class="w-full mt-4 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-xl hover:bg-teal-700 transition-colors disabled:opacity-50" disabled>
+                            <button id="prescribeButton" class="w-full mt-4 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-xl hover:bg-teal-700 transition-colors disabled:opacity-50" disabled>
                                 Generate and Save HEP (0 Exercises)
                             </button>
 
@@ -261,9 +259,7 @@
                 </div>
             </div>
         </main>
-        
-        <div id="printView" class="hidden">
-            </div>
+
         <footer id="footer" class="mt-12 p-6 text-center text-gray-400 text-sm bg-gray-800 rounded-xl shadow-inner">
             <p>&copy; 2024 HEP Hub. Specialized Post-Rehab Exercise Platform.</p>
             <p class="mt-2">Data stored locally in your browser using **LocalStorage**.</p>
